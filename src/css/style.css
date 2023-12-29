@@ -84,7 +84,9 @@ h2 {
     transition: all .1s ease-out;
 }
 
-
+#suggestions {
+    display: none;
+}
 
 
 /*BreakPoints*/ 

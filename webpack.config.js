@@ -8,14 +8,17 @@ const isProduction = process.env.NODE_ENV == 'production';
 
 
 const stylesHandler = isProduction ? MiniCssExtractPlugin.loader : 'style-loader';
-
+const webpack = require('webpack');
 
 
 const config = {
-    entry: './src/js/index.js',
+    entry: {
+        index: './src/js/index.js',
+        subject:'./src/js/subject.js'
+    },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: "bundle.js"
+        filename: "[name].bundle.js"
     },
     devServer: {
         open: true,
@@ -25,6 +28,11 @@ const config = {
         new HtmlWebpackPlugin({
             title: "Choose Your Book di Addolorata Sparagno",
             template: './src/index.html',
+        }),
+
+        new webpack.ProvidePlugin({
+            axios: "axios",
+            _: "lodash",
         }),
 
         // Add your plugins here
