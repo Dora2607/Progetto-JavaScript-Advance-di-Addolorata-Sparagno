@@ -1,6 +1,5 @@
 import "../css/style.css";
-import "./subject.js";
+import "./subject";
 
-
-import { showSuggestions } from "./subjects";
-
+import {showSuggestions} from "./subject";
+showSuggestions(value);

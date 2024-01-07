@@ -18,7 +18,8 @@ const config = {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: "[name].bundle.js"
+        filename: "[name].bundle.js",
+        clean: true
     },
     devServer: {
         open: true,
@@ -42,7 +43,13 @@ const config = {
         rules: [
             {
                 test: /\.(js|jsx)$/i,
-                loader: 'babel-loader',
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env'],
+                    }
+                }
             },
             {
                 test: /\.css$/i,

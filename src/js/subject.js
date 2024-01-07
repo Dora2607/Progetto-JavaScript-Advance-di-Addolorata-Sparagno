@@ -97,7 +97,7 @@ subjects = [
 
 
 
-function showSuggestions(value){
+ export function showSuggestions(value){
     let suggestions = document.getElementById("suggestions");
     suggestions.style.display = "none";
     suggestions.innerHTML = "";
@@ -120,5 +120,4 @@ function showSuggestions(value){
     }
 }
 
-//esporta la funzione sopra
-module.exports = showSuggestions;
+
