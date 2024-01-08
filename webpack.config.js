@@ -18,8 +18,9 @@ const config = {
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: "[name].bundle.js",
-        clean: true
+        filename: "[name].js",
+        clean: true,
+        assetModuleFilename: "[name][ext]",
     },
     devServer: {
         open: true,
@@ -28,6 +29,7 @@ const config = {
     plugins: [
         new HtmlWebpackPlugin({
             title: "Choose Your Book di Addolorata Sparagno",
+            filename: 'index.html',
             template: './src/index.html',
         }),
 
