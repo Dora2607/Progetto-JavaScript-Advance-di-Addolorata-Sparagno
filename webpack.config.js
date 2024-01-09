@@ -13,8 +13,7 @@ const webpack = require('webpack');
 
 const config = {
     entry: {
-        index: './src/js/index.js',
-        subject:'./src/js/subject.js'
+        index: './src/index.js'
     },
     output: {
         path: path.resolve(__dirname, 'dist'),

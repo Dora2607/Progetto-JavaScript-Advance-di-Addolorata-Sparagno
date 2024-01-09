@@ -1,6 +1,3 @@
-
-import "../css/style.css";
-
 let subjects = [
     "Architecture",
     "Art Instruction",
@@ -97,6 +94,4 @@ let subjects = [
     "Japanese",
   ];
 
-import showSuggestions from "./subject";
-let value = "il tuo valore qui"; 
-showSuggestions(value);
+  module.exports = subjects;

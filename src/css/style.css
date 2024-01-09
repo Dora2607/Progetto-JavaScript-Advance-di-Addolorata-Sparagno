@@ -37,6 +37,8 @@ h2 {
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+
 }
 
 
@@ -86,8 +88,22 @@ h2 {
 
 #suggestions {
     display: none;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 100%;
+    z-index: 999;
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1)    
 }
 
+.showSuggestionStyle{
+    display: block;
+    min-width: 200px;
+    width: 280px;
+
+}
 
 /*BreakPoints*/ 
 

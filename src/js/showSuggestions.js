@@ -1,6 +1,5 @@
 
-
-function showSuggestions(value){
+function showSuggestions(value,subjects){
     let suggestions = document.getElementById("suggestions");
     suggestions.style.display = "none";
     suggestions.innerHTML = "";
@@ -12,6 +11,7 @@ function showSuggestions(value){
             suggestions.style.display = "block";
             matches.forEach(function(match){
                 let div = document.createElement("div");
+                div.classList.add("showSuggestionStyle");
                 div.innerHTML=match;
                 div.onclick = function(){
                     document.getElementById('searchBar').value= match;
@@ -23,7 +23,8 @@ function showSuggestions(value){
     }
 }
 
-window.showSuggestions = showSuggestions;
-export default showSuggestions;
+
+module.exports = showSuggestions;
+
 
 
