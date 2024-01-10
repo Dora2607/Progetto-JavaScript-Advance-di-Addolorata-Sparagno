@@ -34,22 +34,22 @@ h2 {
 .searchBarContainer {
     width: 100%;
     margin-top: 3rem;
-    display: flex;
+    display: inline-flex;
     justify-content: center;
     align-items: center;
     position: relative;
+    padding: 12px 20px;
 
 }
 
 
 .searchBar {
-    min-width: 200px;
-    width: 280px;
+    width: 100%;
+    padding: 6px 10px;
     line-height: 20px;
     height: 30px;
     border-top-left-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
-    padding-left: 0.3rem;
     background-color: #F7F7F5 ;
     border: 1px solid #B4B0A0;
     border-right: none;
@@ -89,21 +89,27 @@ h2 {
 #suggestions {
     display: none;
     position: absolute;
-    top: 30px;
-    left: 0;
     width: 100%;
-    z-index: 999;
+    top: 50px;
     max-height: 200px;
-    overflow-y: auto;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1)    
+    z-index: 1;
+    padding: 12px 20px;   
+
 }
 
 .showSuggestionStyle{
-    display: block;
-    min-width: 200px;
-    width: 280px;
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 12px;
+    border-bottom: 1px solid #3D5956;
+    text-align: left;
 
+    
 }
+
+#searchBar:focus + #suggestions {
+    display: block;
+} 
 
 /*BreakPoints*/ 
 
@@ -125,20 +131,29 @@ h2 {
         margin-top: 2.5rem;
         margin-left: 3rem; 
     }
-
-
     .searchBar{
-        width: 50%;
         height: 40px;
         font-size: 14px;
-        padding-left: 0.6rem;
+        padding: 12px 20px;
+        
     }
 
     .searchButton{
         height: 40px;
         font-size: 14px;
     }
+    
+    .searchBarContainer,.showSuggestionStyle, #suggestions{
+        font-size: 14px;    
+        padding: 12px 30px 12px 30px;
+    }
+
+
+
+
 }
+
+
 
 @media only screen and (min-width: 992px){
         /*Typography*/
@@ -152,6 +167,11 @@ h2 {
         .searchBar, .searchButton{
             height: 50px;
             font-size: 16px;
+        }
+        
+        .searchBarContainer,.showSuggestionStyle, #suggestions{
+            font-size: 16px;    
+            padding: 12px 40px 12px 40px;
         }
 
 }
@@ -169,6 +189,12 @@ h2 {
             height: 55px;
             font-size: 18px;
         }
+        
+        .searchBarContainer,.showSuggestionStyle, #suggestions{
+            font-size: 18px; 
+            padding: 24px 70px 12px 70px;   
+            
+        }
 }
 
 @media only screen and (min-width: 1400px){
@@ -184,6 +210,8 @@ h2 {
             height: 60px;
             font-size: 18px;
         }
+
+
 
 }
 
