@@ -15,11 +15,29 @@ function search(category) {
   axios
     .get("https://openlibrary.org/subjects/" + category + ".json")
     .then((response) => {
-      const obj = response.data;
-      for (let key in obj){
-        console.log(key);
+      const obj = response.data.works;
+      console.log(obj);
+      const results = document.getElementById('results');
+      results.innerHTML = '';
+      obj.forEach((work) => {
+        const div = document.createElement('div');
+        div.classList.add('bookCard');
+        const h4 = document.createElement('h4');
+        h4.textContent = work.title;
+        const author = document.createElement('p');
+        author.textContent = work.authors.map(function(author) { return author.name; }).join(', '); 
+        div.appendChild(h4);
+        div.appendChild(author);
+        results.appendChild(div);
+    });
+      
+      
+      
 
-      }
+
+      
+      
+      
       
     })
     .catch(error => {
