@@ -5,8 +5,7 @@
 // una rispsosta. Gestisco la risposta con get
 
 const { default: axios } = require("axios");
-const {default: _ } = require("lodash");
-
+const { default: _ } = require("lodash");
 
 function search(category) {
   // richiesta a GET all'api
@@ -16,34 +15,32 @@ function search(category) {
     .get("https://openlibrary.org/subjects/" + category + ".json")
     .then((response) => {
       const obj = response.data.works;
-      console.log(obj);
-      const results = document.getElementById('results');
-      results.innerHTML = '';
-      obj.forEach((work) => {
-        const div = document.createElement('div');
-        div.classList.add('bookCard');
-        const h4 = document.createElement('h4');
-        h4.textContent = work.title;
-        const author = document.createElement('p');
-        author.textContent = work.authors.map(function(author) { return author.name; }).join(', '); 
-        div.appendChild(h4);
-        div.appendChild(author);
-        results.appendChild(div);
-    });
-      
-      
-      
-
-
-      
-      
-      
-      
+      if (obj.length === 0) {
+        alert("Nessun risultato trovato!");
+      } else {
+        const results = document.getElementById("results");
+        results.innerHTML = "";
+        obj.forEach((work) => {
+          const div = document.createElement("div");
+          div.classList.add("bookCard");
+          const h4 = document.createElement("h4");
+          h4.textContent = work.title;
+          const author = document.createElement("p");
+          author.textContent = work.authors
+            .map(function (author) {
+              return author.name;
+            })
+            .join(", ");
+          div.appendChild(h4);
+          div.appendChild(author);
+          results.appendChild(div);
+        });
+      }
     })
-    .catch(error => {
+    .catch((error) => {
       console.error(error);
+      alert("Errore nella ricerca");
     });
 }
-
 
 module.exports = search;

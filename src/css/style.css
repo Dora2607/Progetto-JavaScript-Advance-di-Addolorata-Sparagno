@@ -24,8 +24,7 @@ h2 {
   text-align: center;
 }
 
-h4,
-p {
+h4 {
   font-family: "Poppins", sans-serif;
 }
 
@@ -131,13 +130,30 @@ p {
 }
 
 .bookCard {
-  height: 100%;
+  height: 125px;
   width: 200px;
   padding: 1rem;
   transition: all 0.2s ease-in-out;
   cursor: pointer;
   background-color: #62929e;
   margin: 0.5rem;
+  border-radius: 0.25rem;
+  overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.bookCard::-webkit-scrollbar{
+  display: none;
+}
+
+.bookCard h4{
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+
+.bookCard p {
+  line-height: 1.5;
 }
 
 /*BreakPoints*/
@@ -189,9 +205,8 @@ p {
   .showSuggestionStyle {
     font-size: 14px;
   }
-  .bookCard{
-    min-height: 200px;
-  }
+
+
 }
 
 @media only screen and (min-width: 992px) {
