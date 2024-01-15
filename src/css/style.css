@@ -116,6 +116,11 @@ p {
   cursor: pointer;
 }
 
+.showSuggestionStyle:hover{
+  background-color: rgba(229, 193, 189, 0.75);
+}
+
+
 #searchBar:focus + #suggestions {
   display: block;
 }

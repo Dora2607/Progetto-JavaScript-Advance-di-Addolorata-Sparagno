@@ -1,12 +1,8 @@
 import "./css/style.css";
 
-import axios from 'axios';
-import _ from 'lodash';
-
 const subjects = require("./js/subjects");
 
 const showSuggestions = require("./js/showSuggestions");
-
 
 
 const searchBar = document.getElementById("searchBar");
@@ -20,10 +16,11 @@ if (searchBar != null) {
 }
 
 
-const search = require("./js/search");
+const createObj = require("./js/createObj");
+const createPreview = require("./js/createPreview");
 
 const searchButton = document.querySelector(".searchButton");
-searchButton.addEventListener("click", ()=>{
+searchButton.addEventListener("click", async ()=>{
     const searchBar = document.getElementById("searchBar");
     let newUserInput = searchBar.value;
     if(newUserInput === "") {
@@ -32,8 +29,14 @@ searchButton.addEventListener("click", ()=>{
         } else {
             let userInput = newUserInput.toLowerCase();
             userInput = userInput.replace(/ /g,"");
-            search(userInput);
+            await createPreview(userInput);
             searchBar.value="";
-            }
+
+          }
         }
     );
+
+
+      
+      
+
