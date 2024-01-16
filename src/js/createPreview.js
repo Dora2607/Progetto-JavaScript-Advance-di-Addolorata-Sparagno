@@ -13,18 +13,15 @@ async function createPreview(category) {
         const card = document.createElement("div");
         card.classList.add("bookCard");
         const title = document.createElement("h4");
-        title.textContent = book.title;
+        const linkDescription = document.createElement("a");
+        linkDescription.id = book.key;
+        linkDescription.textContent = book.title;
+        linkDescription.classList.add("linkDescription");
         const author = document.createElement("p");
         author.textContent = book.author;
-        const btnShowMore = document.createElement("button");
-        btnShowMore.setAttribute(
-          "onclick",
-          'showBookDetails("' + book.key + '")'
-        );
-        btnShowMore.textContent = "Mostra di più";
+        title.appendChild(linkDescription);
         card.appendChild(title);
         card.appendChild(author);
-        card.appendChild(btnShowMore);
         results.append(card);
       });
     }

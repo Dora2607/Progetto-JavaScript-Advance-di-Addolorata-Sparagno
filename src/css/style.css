@@ -118,6 +118,7 @@ p {
 
 .showSuggestionStyle:hover{
   background-color: rgba(229, 193, 189, 0.75);
+  backdrop-filter: blur(8px);
 }
 
 
@@ -139,9 +140,8 @@ p {
   width: 200px;
   padding: 1rem;
   transition: all 0.2s ease-in-out;
-  cursor: pointer;
   background-color: #62929e;
-  margin: 0.5rem;
+  margin: 1rem;
   border-radius: 0.25rem;
   overflow: auto;
   scrollbar-width: none;
@@ -156,6 +156,20 @@ p {
   line-height: 1.2;
   margin-bottom: 0.5rem;
 }
+
+.linkDescription{
+  text-decoration-line: none;
+  color: black;
+  cursor: pointer;
+}
+
+.linkDescription:hover{
+  font-size: 105%;
+  color: white;
+  
+}
+
+
 
 .bookCard p {
   line-height: 1.5;
