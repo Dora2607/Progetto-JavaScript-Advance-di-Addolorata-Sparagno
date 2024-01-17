@@ -1,4 +1,5 @@
 import "./css/style.css";
+const _ = require('lodash');
 
 const subjects = require("./js/subjects");
 
@@ -16,7 +17,8 @@ if (searchBar != null) {
 
 const createObj = require("./js/createObj");
 const createPreview = require("./js/createPreview");
-const getBookInfo = require("./js/showDescription");
+const showDescription = require("./js/showDescription");
+const fetchImage = require("./js/showDescription");
 
 const searchButton = document.querySelector(".searchButton");
 searchButton.addEventListener("click", async () => {
@@ -35,9 +37,8 @@ searchButton.addEventListener("click", async () => {
       link.addEventListener("click", (e) => {
         e.preventDefault();
         let key = link.id;
-        console.log(key);
-        getBookInfo(key);
-        
+        showDescription(key);
+
       });
     });
   }

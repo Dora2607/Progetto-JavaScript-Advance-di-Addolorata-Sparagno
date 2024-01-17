@@ -6,26 +6,35 @@
 // chiamata quando il componente è pronto.
 
 const { default: axios } = require("axios");
-const { default: _, forEach } = require("lodash");
 const createObj = require("./createObj");
+const _ = require("lodash");
 
-
-async function getBookInfo(id) {
+async function showDescription(id) {
   const response = await axios.get("https://openlibrary.org" + id + ".json");
-  let description = response.data.description;
-  let coverDati = response.data.cover_edition.key;
-  const cover = await axios.get("https://openlibrary.org" + coverDati + ".json");
-  let resultCover = cover.data;
-  console.log(resultCover)
-
-
-//   console.log(description);
-//   console.log(title);
-//   console.log(dati);
-//   console.log(cover_dati);
-  if (!description) {
-    description = "Non è presente alcuna descrizione per questo titolo";
+  let info = response.data;
+  console.log(info);
+  let description = _.get(info, "description");
+  if (typeof description === "object") {
+    description = _.get(description, "value");
   }
+
+  let coverEdition = response.data.cover_edition;
+  if (coverEdition) {
+    let coverData = coverEdition.key;
+    const cover = await axios.get(
+      "https://openlibrary.org" + coverData + ".json"
+    );
+    let resultCover = cover.data;
+    console.log(resultCover);
+    let isbn =
+      _.get(resultCover, "isbn_13[0]") || _.get(resultCover, "isbn_10[0]");
+    console.log(isbn);
+    coverBook = `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`;
+    console.log(coverBook);
+  }
+
+  return { description, coverBook };
 }
 
-module.exports = getBookInfo;
+module.exports = showDescription;
+// module.exports = fetchImage;
