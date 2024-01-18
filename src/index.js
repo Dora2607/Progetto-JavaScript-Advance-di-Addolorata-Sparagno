@@ -17,8 +17,8 @@ if (searchBar != null) {
 
 const createObj = require("./js/createObj");
 const createPreview = require("./js/createPreview");
-const showDescription = require("./js/showDescription");
-const fetchImage = require("./js/showDescription");
+const getInfoBook = require("./js/getInfoBook");
+const showModal = require("./js/showModal");
 
 const searchButton = document.querySelector(".searchButton");
 searchButton.addEventListener("click", async () => {
@@ -37,7 +37,8 @@ searchButton.addEventListener("click", async () => {
       link.addEventListener("click", (e) => {
         e.preventDefault();
         let key = link.id;
-        showDescription(key);
+        const bookInfo = getInfoBook(key);
+        showModal(link, bookInfo.description, bookInfo.coverBook);
 
       });
     });

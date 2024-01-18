@@ -9,7 +9,8 @@ const { default: axios } = require("axios");
 const createObj = require("./createObj");
 const _ = require("lodash");
 
-async function showDescription(id) {
+
+async function getInfoBook(id) {
   const response = await axios.get("https://openlibrary.org" + id + ".json");
   let info = response.data;
   console.log(info);
@@ -31,10 +32,26 @@ async function showDescription(id) {
     console.log(isbn);
     coverBook = `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`;
     console.log(coverBook);
+  } else {
+    // Inserisci i percorsi delle tue immagini qui
+    let images = [
+      "../asset/img/cover1.jpeg",
+      "../asset/img/cover2.jpeg",
+      "../asset/img/cover3.jpeg",
+    ];
+
+    // Genera un numero casuale tra 0 e la lunghezza dell'array delle immagini
+    var randomIndex = Math.floor(Math.random() * images.length);
+
+    // Seleziona un'immagine casuale dall'array
+    var randomImage = images[randomIndex];
+
+    console.log(randomImage); // Stampa il percorso dell'immagine casuale
+    coverBook = randomImage;
   }
 
   return { description, coverBook };
 }
 
-module.exports = showDescription;
-// module.exports = fetchImage;
+module.exports = getInfoBook;
+
