@@ -1,5 +1,8 @@
 import "./css/style.css";
 const _ = require('lodash');
+import cover1 from "./asset/img/cover1.jpg";
+import cover2 from "./asset/img/cover2.jpg";
+import cover3 from "./asset/img/cover3.jpg";
 
 const subjects = require("./js/subjects");
 
@@ -34,11 +37,13 @@ searchButton.addEventListener("click", async () => {
     searchBar.value = "";
     const linkDescription = document.querySelectorAll(".linkDescription");
     linkDescription.forEach((link) => {
-      link.addEventListener("click", (e) => {
+      link.addEventListener("click", async (e) => {
         e.preventDefault();
         let key = link.id;
-        const bookInfo = getInfoBook(key);
-        showModal(link, bookInfo.description, bookInfo.coverBook);
+        let showInfoBook = await getInfoBook(key);
+        console.log(showInfoBook);
+        
+        showModal(link, showInfoBook[0].description, showInfoBook[0].coverBook);
 
       });
     });

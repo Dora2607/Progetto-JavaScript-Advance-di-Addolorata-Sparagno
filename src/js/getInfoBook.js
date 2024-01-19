@@ -10,15 +10,25 @@ const createObj = require("./createObj");
 const _ = require("lodash");
 
 
+
+// Make a GET request to the Open Library API to retrieve information about the book
 async function getInfoBook(id) {
+
+  let arrayInfo = [];
+  let objInfo = {};
+  
+   // Extract the book description from the response data
   const response = await axios.get("https://openlibrary.org" + id + ".json");
   let info = response.data;
-  console.log(info);
   let description = _.get(info, "description");
   if (typeof description === "object") {
     description = _.get(description, "value");
   }
+  objInfo["description"] = description;
 
+
+  // Extract the cover edition information from the response data 
+  //If the cover edition object does not exist, use a random book cover image
   let coverEdition = response.data.cover_edition;
   if (coverEdition) {
     let coverData = coverEdition.key;
@@ -31,26 +41,23 @@ async function getInfoBook(id) {
       _.get(resultCover, "isbn_13[0]") || _.get(resultCover, "isbn_10[0]");
     console.log(isbn);
     coverBook = `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`;
-    console.log(coverBook);
+
   } else {
-    // Inserisci i percorsi delle tue immagini qui
     let images = [
-      "../asset/img/cover1.jpeg",
-      "../asset/img/cover2.jpeg",
-      "../asset/img/cover3.jpeg",
+      "asset/img/cover1.jpg",
+      "asset/img/cover2.jpg",
+      "asset/img/cover3.jpg",
     ];
 
-    // Genera un numero casuale tra 0 e la lunghezza dell'array delle immagini
-    var randomIndex = Math.floor(Math.random() * images.length);
-
-    // Seleziona un'immagine casuale dall'array
-    var randomImage = images[randomIndex];
-
-    console.log(randomImage); // Stampa il percorso dell'immagine casuale
+    let randomIndex = Math.floor(Math.random() * images.length);
+    let randomImage = images[randomIndex];
     coverBook = randomImage;
   }
-
-  return { description, coverBook };
+  objInfo["coverBook"] = coverBook;
+  
+  // Push the object into an array and return it
+  arrayInfo.push(objInfo);
+  return arrayInfo;
 }
 
 module.exports = getInfoBook;

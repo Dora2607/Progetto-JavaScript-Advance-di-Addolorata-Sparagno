@@ -1,7 +1,7 @@
-function showModal(link, description, immagine) {
+function showModal(link, description, coverBook) {
     // Prendere il titolo e gli autori dal link cliccato
-    const titolo = link.textContent;
-    const autori = link.parentElement.nextElementSibling.textContent;
+    const titleBook = link.textContent;
+    const authorBook = link.parentElement.nextElementSibling.textContent;
   
     // Creare un elemento modale
     const modal = document.createElement('div');
@@ -9,9 +9,9 @@ function showModal(link, description, immagine) {
   
     // Aggiungere il contenuto al modale
     modal.innerHTML = `
-      <h2>${titolo}</h2>
-      <h3>${autori}</h3>
-      <img src="${coverBook}" alt="${titolo}">
+      <h2>${titleBook}</h2>
+      <h3>${authorBook}</h3>
+      <img src="${coverBook}" alt="${titleBook}">
       <p>${description}</p>
     `;
   
