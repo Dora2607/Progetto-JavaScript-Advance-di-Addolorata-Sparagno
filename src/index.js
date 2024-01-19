@@ -1,5 +1,5 @@
 import "./css/style.css";
-const _ = require('lodash');
+const _ = require("lodash");
 import cover1 from "./asset/img/cover1.jpg";
 import cover2 from "./asset/img/cover2.jpg";
 import cover3 from "./asset/img/cover3.jpg";
@@ -41,10 +41,10 @@ searchButton.addEventListener("click", async () => {
         e.preventDefault();
         let key = link.id;
         let showInfoBook = await getInfoBook(key);
-        console.log(showInfoBook);
-        
         showModal(link, showInfoBook[0].description, showInfoBook[0].coverBook);
-
+        const results = document.getElementById("results");
+        results.style.display = "none";
+        
       });
     });
   }

@@ -1,25 +1,45 @@
 function showModal(link, description, coverBook) {
-    // Prendere il titolo e gli autori dal link cliccato
-    const titleBook = link.textContent;
-    const authorBook = link.parentElement.nextElementSibling.textContent;
+  const modalBook = document.getElementById("modalBook");
+  modalBook.style.backgroundColor = "rgba(0,0,0,0.4)"
+  modalBook.style.backdropFilter = " blur(10px)"
+  const modalContent = document.createElement("div");
+  modalContent.className = "modalContent";
+  modalContent.id = "modalContent";
+ 
+  const closeButton = document.createElement("span");
+  closeButton.classList.add("close");
+  closeButton.textContent = "&times";
   
-    // Creare un elemento modale
-    const modal = document.createElement('div');
-    modal.classList.add('modal');
-  
-    // Aggiungere il contenuto al modale
-    modal.innerHTML = `
-      <h2>${titleBook}</h2>
-      <h3>${authorBook}</h3>
-      <img src="${coverBook}" alt="${titleBook}">
-      <p>${description}</p>
-    `;
-  
-    // Aggiungere il modale al body del documento
-    document.body.appendChild(modal);
-  
-    // Mostrare il modale
-    modal.style.display = 'block';
+  // closeButton.addEventListener('click', (e) => {
+  //   e.preventDefault();
+  //   modalBook.style.display = 'none';
+  //   window.location.hash = '';
+  //   });
+
+  const linkTitle = link.textContent;
+  const linkAuthor = link.parentElement.nextElementSibling.textContent;
+
+    const imgCover = document.createElement("img");
+    imgCover.src=coverBook;
+    imgCover.alt="Image of "+linkTitle;
+    imgCover.id ="imgCover";
+
+    const bookTitle = document.createElement("h3");
+    bookTitle.textContent = linkTitle;
+    bookTitle.id = "bookTitle";
+    const authorTitle = document.createElement("h4");
+    authorTitle.textContent = "by " + linkAuthor;
+    authorTitle.id = "authorTitle"
+
+    const bookDescription = document.createElement("p");
+    bookDescription.innerText = description;
+    bookDescription.id = "description";
+    modalContent.appendChild(imgCover);
+    modalContent.appendChild(bookTitle);
+    modalContent.appendChild(authorTitle);
+    modalContent.appendChild(bookDescription);
+    modalContent.appendChild(closeButton);
+    modalBook.appendChild(modalContent);
   }
 
   module.exports = showModal;
