@@ -9,25 +9,27 @@ const { default: axios } = require("axios");
 const createObj = require("./createObj");
 const _ = require("lodash");
 
-
-
 // Make a GET request to the Open Library API to retrieve information about the book
 async function getInfoBook(id) {
-
   let arrayInfo = [];
   let objInfo = {};
-  
-   // Extract the book description from the response data
+
+  // Extract the book description from the response data
   const response = await axios.get("https://openlibrary.org" + id + ".json");
   let info = response.data;
   let description = _.get(info, "description");
-  if (typeof description === "object") {
-    description = _.get(description, "value");
+  if (typeof description === "string") {
+    // description è già una stringa, quindi non è necessario fare nulla
+  } else if (typeof description === "object" && description !== null && "value" in description) {
+    // description è un oggetto con una proprietà value, quindi estraiamo quella
+    description = description.value;
+  } else {
+    // description non è una stringa né un oggetto con una proprietà value, quindi impostiamola su un valore predefinito
+    description = "There is no 'description' for this book.";
   }
   objInfo["description"] = description;
 
-
-  // Extract the cover edition information from the response data 
+  // Extract the cover edition information from the response data
   //If the cover edition object does not exist, use a random book cover image
   let coverEdition = response.data.cover_edition;
   if (coverEdition) {
@@ -41,7 +43,6 @@ async function getInfoBook(id) {
       _.get(resultCover, "isbn_13[0]") || _.get(resultCover, "isbn_10[0]");
     console.log(isbn);
     coverBook = `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`;
-
   } else {
     let images = [
       "asset/img/cover1.jpg",
@@ -54,11 +55,10 @@ async function getInfoBook(id) {
     coverBook = randomImage;
   }
   objInfo["coverBook"] = coverBook;
-  
+
   // Push the object into an array and return it
   arrayInfo.push(objInfo);
   return arrayInfo;
 }
 
 module.exports = getInfoBook;
-

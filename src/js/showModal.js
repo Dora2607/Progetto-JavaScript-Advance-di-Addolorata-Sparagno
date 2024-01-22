@@ -1,20 +1,18 @@
-function showModal(link, description, coverBook) {
+async function showModal(link, description, coverBook) {
   const modalBook = document.getElementById("modalBook");
-  modalBook.style.backgroundColor = "rgba(0,0,0,0.4)"
-  modalBook.style.backdropFilter = " blur(10px)"
+  while (modalBook.firstChild){
+    modalBook.removeChild(modalBook.firstChild);
+  };
   const modalContent = document.createElement("div");
   modalContent.className = "modalContent";
   modalContent.id = "modalContent";
  
   const closeButton = document.createElement("span");
   closeButton.classList.add("close");
-  closeButton.textContent = "&times";
+  const imgButton = document.createElement("img");
+  imgButton.classList.add("imgButton");
+  imgButton.src = "asset/img/iconsX.png";
   
-  // closeButton.addEventListener('click', (e) => {
-  //   e.preventDefault();
-  //   modalBook.style.display = 'none';
-  //   window.location.hash = '';
-  //   });
 
   const linkTitle = link.textContent;
   const linkAuthor = link.parentElement.nextElementSibling.textContent;
@@ -38,8 +36,21 @@ function showModal(link, description, coverBook) {
     modalContent.appendChild(bookTitle);
     modalContent.appendChild(authorTitle);
     modalContent.appendChild(bookDescription);
+    closeButton.appendChild(imgButton);
     modalContent.appendChild(closeButton);
     modalBook.appendChild(modalContent);
+
+
+    const close = document.querySelector(".imgButton");
+    close.addEventListener("click", (e) => {
+      e.preventDefault();
+      modalBook.style.display = "none";
+      
+       const results = document.getElementById("results");
+       results.style.display = "flex";
+    });
   }
 
   module.exports = showModal;
+
+  //<a target="_blank" href="https://icons8.com/icon/dnWj68fbIjQS/moltiplicare">X</a> icona di <a target="_blank" href="https://icons8.com">Icons8</a>

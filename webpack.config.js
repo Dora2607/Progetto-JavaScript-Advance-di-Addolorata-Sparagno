@@ -62,6 +62,14 @@ const config = {
           filename: "asset/img/[name][ext]",
         },
       },
+      {
+        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
+        include: path.resolve(__dirname, 'src/asset/logo'),
+        type: "asset/resource",
+        generator: {
+          filename: "asset/logo/[name][ext]",
+        },
+      },
 
       // Add your rules for custom modules here
       // Learn more about loaders from https://webpack.js.org/loaders/

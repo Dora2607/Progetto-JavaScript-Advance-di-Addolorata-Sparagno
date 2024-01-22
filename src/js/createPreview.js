@@ -5,7 +5,7 @@ const createObj = require('./createObj');
 async function createPreview(category) {
     const bookInfo = await createObj(category);
     if (bookInfo.length === 0) {
-      alert("Nessun risultato trovato!");
+      alert("No results found!");
     } else {
       const results = document.getElementById("results");
       results.innerHTML = "";

@@ -3,6 +3,9 @@ const _ = require("lodash");
 import cover1 from "./asset/img/cover1.jpg";
 import cover2 from "./asset/img/cover2.jpg";
 import cover3 from "./asset/img/cover3.jpg";
+import iconsX from "./asset/img/iconsX.png";
+const logoContext = require.context('./asset/logo', false, /\.(png|jpe?g|svg)$/);
+const logos = logoContext.keys().map(logoContext);
 
 const subjects = require("./js/subjects");
 
@@ -42,10 +45,16 @@ searchButton.addEventListener("click", async () => {
         let key = link.id;
         let showInfoBook = await getInfoBook(key);
         showModal(link, showInfoBook[0].description, showInfoBook[0].coverBook);
+        const modalBook = document.getElementById("modalBook");
+        modalBook.style.display = "flex";
         const results = document.getElementById("results");
         results.style.display = "none";
-        
       });
     });
   }
+});
+searchBar.addEventListener("click", function() {
+  modalBook.style.display = "none";
+  const results = document.getElementById("results");
+  results.style.display = "flex";
 });
