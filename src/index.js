@@ -1,3 +1,4 @@
+// 
 import "./css/style.css";
 const _ = require("lodash");
 import cover1 from "./asset/img/cover1.jpg";
@@ -7,8 +8,8 @@ import iconsX from "./asset/img/iconsX.png";
 const logoContext = require.context('./asset/logo', false, /\.(png|jpe?g|svg)$/);
 const logos = logoContext.keys().map(logoContext);
 
-const subjects = require("./js/subjects");
 
+const subjects = require("./js/subjects");
 const showSuggestions = require("./js/showSuggestions");
 
 const searchBar = document.getElementById("searchBar");
@@ -31,7 +32,7 @@ searchButton.addEventListener("click", async () => {
   const searchBar = document.getElementById("searchBar");
   let newUserInput = searchBar.value;
   if (newUserInput === "") {
-    alert("Inserire un testo per effettuare la ricerca");
+    alert("Enter text to search");
     return false;
   } else {
     let userInput = newUserInput.toLowerCase();
@@ -42,8 +43,11 @@ searchButton.addEventListener("click", async () => {
     linkDescription.forEach((link) => {
       link.addEventListener("click", async (e) => {
         e.preventDefault();
+        let  bookCardId = link.parentNode.parentNode;
+        let coverKey = bookCardId.id;
+        console.log(coverKey);
         let key = link.id;
-        let showInfoBook = await getInfoBook(key);
+        let showInfoBook = await getInfoBook(key,coverKey);
         showModal(link, showInfoBook[0].description, showInfoBook[0].coverBook);
         const modalBook = document.getElementById("modalBook");
         modalBook.style.display = "flex";
@@ -58,3 +62,5 @@ searchBar.addEventListener("click", function() {
   const results = document.getElementById("results");
   results.style.display = "flex";
 });
+
+

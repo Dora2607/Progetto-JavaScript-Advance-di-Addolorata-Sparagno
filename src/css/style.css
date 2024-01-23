@@ -18,12 +18,13 @@ h1 {
   text-align: center;
 }
 
-h2,h3,h4{
+h2,
+h3,
+h4 {
   font-family: "Poppins", sans-serif;
 }
 
 h2 {
-  
   font-size: 18px;
   text-align: center;
 }
@@ -32,7 +33,7 @@ h3 {
   font-size: 16px;
 }
 
-h4 {  
+h4 {
   font-size: 14px;
 }
 
@@ -120,11 +121,10 @@ p {
   cursor: pointer;
 }
 
-.showSuggestionStyle:hover{
+.showSuggestionStyle:hover {
   background-color: rgba(229, 193, 189, 0.75);
   backdrop-filter: blur(8px);
 }
-
 
 #searchBar:focus + #suggestions {
   display: block;
@@ -152,25 +152,24 @@ p {
   -ms-overflow-style: none;
 }
 
-.bookCard::-webkit-scrollbar{
+.bookCard::-webkit-scrollbar {
   display: none;
 }
 
-.bookCard h4{
+.bookCard h4 {
   line-height: 1.2;
   margin-bottom: 0.5rem;
 }
 
-.linkDescription{
+.linkDescription {
   text-decoration-line: none;
   color: black;
   cursor: pointer;
 }
 
-.linkDescription:hover{
+.linkDescription:hover {
   font-size: 105%;
   color: white;
-  
 }
 
 .bookCard p {
@@ -184,25 +183,27 @@ p {
   height: 100%;
   display: flex;
   justify-content: center;
-  
- 
 }
 
 .modalContent {
   width: 280px;
   max-width: 90vw;
-  background-color:#f7f7f5;
+  background-color: #f7f7f5;
   padding: 25px;
   border: 2px solid #919191;
   display: flex;
   flex-direction: column;
-
+  border-radius: 0.25rem;
 }
 
 #bookTitle {
   padding-top: 1rem;
   line-height: 1.2;
   padding-bottom: 0.5rem;
+}
+#authorTitle,
+#description {
+  color: #6b6a6a;
 }
 
 #description {
@@ -271,7 +272,7 @@ p {
   }
 
   #suggestions,
-  .resultsContainer{
+  .resultsContainer {
     padding: 0 65px;
   }
 
@@ -285,7 +286,6 @@ p {
   #imgCover {
     max-width: 300px;
   }
-
 }
 
 @media only screen and (min-width: 992px) {

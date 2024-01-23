@@ -1,36 +1,29 @@
-// quando l'utente clicca sul titolo del libro, si apre un modal in cui viene presentata una card con copertina libro, titolo, autori e descrizione del libro
-// la descrizione del libro si ottiene effettuando una chiamata axios che ha come url: "https://openlibrary.org/subjects/" + key+ ".json" dove key deve essere reperito da objArray
-// e deve corrispondere al libro selezionato. anche la copertina va presa una chiamata api
-// per prendere le informazioni del libro, ma non posso fare l'http request in
-// un costruttore di componenti. Così faccio una funzione che viene rich
-// chiamata quando il componente è pronto.
-
 const { default: axios } = require("axios");
 const createObj = require("./createObj");
 const _ = require("lodash");
 
-// Make a GET request to the Open Library API to retrieve information about the book
-async function getInfoBook(id) {
+async function getInfoBook(id1, id2) {
   let arrayInfo = [];
   let objInfo = {};
+  let coverBook;
 
   // Extract the book description from the response data
-  const response = await axios.get("https://openlibrary.org" + id + ".json");
+  const response = await axios.get("https://openlibrary.org" + id1 + ".json");
   let info = response.data;
   let description = _.get(info, "description");
   if (typeof description === "string") {
-    // description è già una stringa, quindi non è necessario fare nulla
-  } else if (typeof description === "object" && description !== null && "value" in description) {
-    // description è un oggetto con una proprietà value, quindi estraiamo quella
+  } else if (
+    typeof description === "object" &&
+    description !== null &&
+    "value" in description
+  ) {
     description = description.value;
   } else {
-    // description non è una stringa né un oggetto con una proprietà value, quindi impostiamola su un valore predefinito
     description = "There is no 'description' for this book.";
   }
   objInfo["description"] = description;
 
   // Extract the cover edition information from the response data
-  //If the cover edition object does not exist, use a random book cover image
   let coverEdition = response.data.cover_edition;
   if (coverEdition) {
     let coverData = coverEdition.key;
@@ -38,26 +31,36 @@ async function getInfoBook(id) {
       "https://openlibrary.org" + coverData + ".json"
     );
     let resultCover = cover.data;
-    console.log(resultCover);
     let isbn =
       _.get(resultCover, "isbn_13[0]") || _.get(resultCover, "isbn_10[0]");
-    console.log(isbn);
     coverBook = `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`;
-  } else {
+  } else if (id2) {
+    // Second method to get the ISBN
+    const coverApi = await axios.get(
+      "https://openlibrary.org/books/" + id2 + ".json"
+    );
+    const coverDati = coverApi.data;
+    let isbn = _.get(coverDati, "isbn_13[0]") || _.get(coverDati, "isbn_10[0]");
+    if (isbn) {
+      coverBook = `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`;
+    }
+  }
+
+  if (!coverBook) {
+    // If no coverBook is found, use a random book cover image
     let images = [
       "asset/img/cover1.jpg",
       "asset/img/cover2.jpg",
       "asset/img/cover3.jpg",
     ];
-
     let randomIndex = Math.floor(Math.random() * images.length);
     let randomImage = images[randomIndex];
     coverBook = randomImage;
   }
-  objInfo["coverBook"] = coverBook;
 
-  // Push the object into an array and return it
+  objInfo["coverBook"] = coverBook;
   arrayInfo.push(objInfo);
+
   return arrayInfo;
 }
 
