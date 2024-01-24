@@ -255,7 +255,7 @@ Il file createPreview.js contiene una funzione createPreview, ovvero una funzion
 ```javascript
 const bookInfo = await createObj(category);
 ```
-**Gestione dei risultati vuoti**: Se non ci sono libri per la categoria specificata, viene mostrato un messaggio di avviso all’utente.
+- **Gestione dei risultati vuoti**: Se non ci sono libri per la categoria specificata, viene mostrato un messaggio di avviso all’utente.
 ```javascript
 if (bookInfo.length === 0) {
   alert("No results found!");
