@@ -1,3 +1,6 @@
+
+
+// This function displays a modal with book information when a book link is clicked
 async function showModal(link, description, coverBook) {
   const modalBook = document.getElementById("modalBook");
   while (modalBook.firstChild) {

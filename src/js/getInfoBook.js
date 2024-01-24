@@ -34,7 +34,7 @@ async function getInfoBook(id1, id2) {
     let isbn =
       _.get(resultCover, "isbn_13[0]") || _.get(resultCover, "isbn_10[0]");
     coverBook = `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`;
-  } else if (id2) {
+  } else if (id2 !== "null") {
     // Second method to get the ISBN
     const coverApi = await axios.get(
       "https://openlibrary.org/books/" + id2 + ".json"
@@ -46,8 +46,8 @@ async function getInfoBook(id1, id2) {
     }
   }
 
+  // If no coverBook is found, use a random book cover image
   if (!coverBook) {
-    // If no coverBook is found, use a random book cover image
     let images = [
       "asset/img/cover1.jpg",
       "asset/img/cover2.jpg",

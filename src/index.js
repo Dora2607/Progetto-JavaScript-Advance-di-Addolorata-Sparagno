@@ -1,32 +1,37 @@
-// 
+// Import necessary modules and libraries
 import "./css/style.css";
 const _ = require("lodash");
-import cover1 from "./asset/img/cover1.jpg";
-import cover2 from "./asset/img/cover2.jpg";
-import cover3 from "./asset/img/cover3.jpg";
+
+// Import images 
+const coverContext = require.context('./asset/img', false, /cover[1-3]\.jpg$/);
+const covers = coverContext.keys().map(coverContext);
 import iconsX from "./asset/img/iconsX.png";
 const logoContext = require.context('./asset/logo', false, /\.(png|jpe?g|svg)$/);
 const logos = logoContext.keys().map(logoContext);
 
-
+// Import functions for creating book objects, previews, and getting book info
 const subjects = require("./js/subjects");
 const showSuggestions = require("./js/showSuggestions");
-
-const searchBar = document.getElementById("searchBar");
-if (searchBar != null) {
-  // Add event listener for the input field
-  searchBar.addEventListener("input", function () {
-    const value = this.value;
-    // Show suggestions when there are characters in the input field and hide them otherwise
-    showSuggestions(value, subjects);
-  });
-}
-
 const createObj = require("./js/createObj");
 const createPreview = require("./js/createPreview");
 const getInfoBook = require("./js/getInfoBook");
 const showModal = require("./js/showModal");
 
+
+
+
+// Add an event listener to the search bar for input events
+const searchBar = document.getElementById("searchBar");
+if (searchBar != null) {
+  searchBar.addEventListener("input", function () {
+    const value = this.value;
+    showSuggestions(value, subjects);
+  });
+}
+
+
+
+// Add a click event listener to the search button
 const searchButton = document.querySelector(".searchButton");
 searchButton.addEventListener("click", async () => {
   const searchBar = document.getElementById("searchBar");
@@ -45,7 +50,6 @@ searchButton.addEventListener("click", async () => {
         e.preventDefault();
         let  bookCardId = link.parentNode.parentNode;
         let coverKey = bookCardId.id;
-        console.log(coverKey);
         let key = link.id;
         let showInfoBook = await getInfoBook(key,coverKey);
         showModal(link, showInfoBook[0].description, showInfoBook[0].coverBook);
@@ -57,6 +61,8 @@ searchButton.addEventListener("click", async () => {
     });
   }
 });
+
+// Add a click event listener to the searchBar
 searchBar.addEventListener("click", function() {
   modalBook.style.display = "none";
   const results = document.getElementById("results");

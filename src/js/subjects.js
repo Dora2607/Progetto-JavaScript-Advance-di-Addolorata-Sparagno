@@ -1,4 +1,4 @@
-let subjects = [
+const subjects = [
     "Architecture",
     "Art Instruction",
     "Art History",

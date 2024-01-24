@@ -1,5 +1,6 @@
+// Function to display suggestions based on the input value and subjects array
 function showSuggestions(value, subjects) {
-  let suggestions = document.getElementById("suggestions");
+  const suggestions = document.getElementById("suggestions");
   suggestions.style.display = "none";
   suggestions.innerHTML = "";
   if (value.length > 0) {

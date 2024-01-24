@@ -2,6 +2,7 @@ const { default: axios } = require("axios");
 const { default: _, forEach } = require("lodash");
 const createObj = require("./createObj");
 
+// Function to create book previews based on the given category
 async function createPreview(category) {
   const bookInfo = await createObj(category);
   if (bookInfo.length === 0) {
