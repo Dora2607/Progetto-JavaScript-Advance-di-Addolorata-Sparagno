@@ -9,19 +9,19 @@ Con un semplice clic su un libro, l'applicazione recupera e mostra la descrizion
 
 ## Demo 
 
-![Demo1](./asset/demo/demo1.jpg)
+![Demo1](dist/asset/demo/demo1.jpg)
 Schermata iniziale: Questa immagine mostra la schermata iniziale dell’applicazione, con un campo di ricerca pronto per l’input dell’utente.
 
-![Demo2](./asset/demo/demo2.jpg)
+![Demo2](dist/asset/demo/demo2.jpg)
 Suggerimenti di ricerca: Dopo aver inserito una lettera nel campo di ricerca, l’applicazione mostra una serie di suggerimenti. Questa funzionalità aiuta gli utenti a trovare rapidamente ciò che stanno cercando. 
 
-![Demo3](./asset/demo/demo3.jpg)
+![Demo3](dist/asset/demo/demo3.jpg)
 Ricerca per genere: In questa immagine, l’utente ha inserito il genere del libro nel campo di ricerca e ha cliccato su “Search”. Questa funzionalità permette agli utenti di cercare libri specifici per genere.
 
-![Demo4](./asset/demo/demo4.jpg)
+![Demo4](dist/asset/demo/demo4.jpg)
 Risultati della ricerca: Dopo aver cliccato su “Search”, l’applicazione mostra i risultati della ricerca. Ogni risultato include il titolo del libro e l’autore.
 
-![Demo5](./asset/demo/demo5.jpg)
+![Demo5](dist/asset/demo/demo5.jpg)
 Informazioni sul libro: Dopo aver cliccato sul titolo di un libro, l’applicazione mostra una schermata con le informazioni dettagliate del libro. Queste informazioni includono la descrizione del libro e un’immagine di copertina.
 
 
