@@ -1,5 +1,4 @@
 
-
 // This function displays a modal with book information when a book link is clicked
 async function showModal(link, description, coverBook) {
   const modalBook = document.getElementById("modalBook");
@@ -23,17 +22,16 @@ async function showModal(link, description, coverBook) {
   imgCover.src = coverBook;
   imgCover.alt = "Image of " + linkTitle;
   imgCover.id = "imgCover";
-
   const bookTitle = document.createElement("h3");
   bookTitle.textContent = linkTitle;
   bookTitle.id = "bookTitle";
   const authorTitle = document.createElement("h4");
   authorTitle.textContent = "by " + linkAuthor;
   authorTitle.id = "authorTitle";
-
   const bookDescription = document.createElement("p");
   bookDescription.innerText = description;
   bookDescription.id = "description";
+
   modalContent.appendChild(imgCover);
   modalContent.appendChild(bookTitle);
   modalContent.appendChild(authorTitle);

@@ -1,6 +1,23 @@
 const { default: axios } = require("axios");
-const createObj = require("./createObj");
 const _ = require("lodash");
+
+async function getCoverBook(coverData) {
+  try {
+    const cover = await axios.get(
+      "https://openlibrary.org" + coverData + ".json"
+    );
+    let resultCover = cover.data;
+    let isbn =
+      _.get(resultCover, "isbn_13[0]") || _.get(resultCover, "isbn_10[0]");
+    if (!isbn) {
+      return null;
+    }
+    return `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
 
 async function getInfoBook(id1, id2) {
   let arrayInfo = [];
@@ -26,24 +43,10 @@ async function getInfoBook(id1, id2) {
   // Extract the cover edition information from the response data
   let coverEdition = response.data.cover_edition;
   if (coverEdition) {
-    let coverData = coverEdition.key;
-    const cover = await axios.get(
-      "https://openlibrary.org" + coverData + ".json"
-    );
-    let resultCover = cover.data;
-    let isbn =
-      _.get(resultCover, "isbn_13[0]") || _.get(resultCover, "isbn_10[0]");
-    coverBook = `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`;
+    coverBook = await getCoverBook(coverEdition.key);
   } else if (id2 !== "null") {
     // Second method to get the ISBN
-    const coverApi = await axios.get(
-      "https://openlibrary.org/books/" + id2 + ".json"
-    );
-    const coverDati = coverApi.data;
-    let isbn = _.get(coverDati, "isbn_13[0]") || _.get(coverDati, "isbn_10[0]");
-    if (isbn) {
-      coverBook = `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`;
-    }
+    coverBook = await getCoverBook("/books/" + id2);
   }
 
   // If no coverBook is found, use a random book cover image
