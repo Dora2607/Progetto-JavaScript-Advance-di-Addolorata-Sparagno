@@ -9,20 +9,20 @@ Con un semplice clic su un libro, l'applicazione recupera e mostra la descrizion
 
 ## Demo 
 
-![Demo1](dist/asset/demo/demo1.jpg)
-Schermata iniziale: Questa immagine mostra la schermata iniziale dell’applicazione, con un campo di ricerca pronto per l’input dell’utente.
+![Demo1](demo/demo1.jpg)
+*Schermata iniziale*: Questa immagine mostra la schermata iniziale dell’applicazione, con un campo di ricerca pronto per l’input dell’utente.
 
-![Demo2](dist/asset/demo/demo2.jpg)
-Suggerimenti di ricerca: Dopo aver inserito una lettera nel campo di ricerca, l’applicazione mostra una serie di suggerimenti. Questa funzionalità aiuta gli utenti a trovare rapidamente ciò che stanno cercando. 
+![Demo2](demo/demo2.jpg)
+*Suggerimenti di ricerca*: Dopo aver inserito una lettera nel campo di ricerca, l’applicazione mostra una serie di suggerimenti. Questa funzionalità aiuta gli utenti a trovare rapidamente ciò che stanno cercando. 
 
-![Demo3](dist/asset/demo/demo3.jpg)
-Ricerca per genere: In questa immagine, l’utente ha inserito il genere del libro nel campo di ricerca e ha cliccato su “Search”. Questa funzionalità permette agli utenti di cercare libri specifici per genere.
+![Demo3](demo/demo3.jpg)
+*Ricerca per genere*: In questa immagine, l’utente ha inserito il genere del libro nel campo di ricerca e ha cliccato su “Search”. Questa funzionalità permette agli utenti di cercare libri specifici per genere.
 
-![Demo4](dist/asset/demo/demo4.jpg)
-Risultati della ricerca: Dopo aver cliccato su “Search”, l’applicazione mostra i risultati della ricerca. Ogni risultato include il titolo del libro e l’autore.
+![Demo4](demo/demo4.jpg)
+*Risultati della ricerca*: Dopo aver cliccato su “Search”, l’applicazione mostra i risultati della ricerca. Ogni risultato include il titolo del libro e l’autore.
 
-![Demo5](dist/asset/demo/demo5.jpg)
-Informazioni sul libro: Dopo aver cliccato sul titolo di un libro, l’applicazione mostra una schermata con le informazioni dettagliate del libro. Queste informazioni includono la descrizione del libro e un’immagine di copertina.
+![Demo5](demo/demo5.jpg)
+*Informazioni sul libro*: Dopo aver cliccato sul titolo di un libro, l’applicazione mostra una schermata con le informazioni dettagliate del libro. Queste informazioni includono la descrizione del libro e un’immagine di copertina.
 
 
 ## Installazione
@@ -350,18 +350,37 @@ let coverEdition = response.data.cover_edition;
 
   return arrayInfo;
 ```
-2. La funzione `getCoverBook` è una funzione asincrona che recupera l'URL dell'immagine di copertina di un libro da Open Library. Prende un parametro, `coverData`, che rappresenta l'identificatore univoco dell'edizione di copertina di un libro.
-
-La funzione inizia effettuando una chiamata GET all'API di Open Library per ottenere i dati dell'edizione di copertina corrispondente a `coverData`.
+2. La funzione `getCoverBook` è una funzione asincrona che recupera l'URL dell'immagine di copertina di un libro da Open Library. Prende un parametro, `coverData`, che rappresenta l'identificatore univoco dell'edizione di copertina di un libro. La funzione inizia effettuando una chiamata GET all'API di Open Library per ottenere i dati dell'edizione di copertina corrispondente a `coverData`.
 Estrae l'ISBN dai dati della risposta e costruisce l'URL dell'immagine di copertina.
 Se non viene trovato alcun ISBN, la funzione restituisce `null`.
+
+```javascript
+async function getCoverBook(coverData) {
+  try {
+    const cover = await axios.get(
+      "https://openlibrary.org" + coverData + ".json"
+    );
+    let resultCover = cover.data;
+    let isbn =
+      _.get(resultCover, "isbn_13[0]") || _.get(resultCover, "isbn_10[0]");
+    if (!isbn) {
+      return null;
+    }
+    return `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+
+```
 
 ### File `showModal.js`
 
 La funzione `showModal` è una funzione asincrona che mostra un modale con le informazioni del libro quando viene cliccato un link al libro. Prende tre parametri: `link`, `description` e `coverBook`, che rappresentano rispettivamente il link al libro, la descrizione del libro e l'URL dell'immagine di copertina del libro.
 
 
-1. La funzione inizia ottenendo un riferimento all'elemento del DOM con l'ID "modalBook" e rimuovendo tutti i suoi figli. Questo assicura che il modale sia vuoto prima di essere popolato con le nuove informazioni del libro.
+- La funzione inizia ottenendo un riferimento all'elemento del DOM con l'ID "modalBook" e rimuovendo tutti i suoi figli. Questo assicura che il modale sia vuoto prima di essere popolato con le nuove informazioni del libro.
 ```javascript
 async function showModal(link, description, coverBook) {
   const modalBook = document.getElementById("modalBook");
@@ -370,13 +389,13 @@ async function showModal(link, description, coverBook) {
   };
 ```
 
-2. Successivamente, crea un nuovo elemento `div` per il contenuto del modale e gli assegna la classe "modalContent" e l'ID "modalContent".
+- Successivamente, crea un nuovo elemento `div` per il contenuto del modale e gli assegna la classe "modalContent" e l'ID "modalContent".
 ```javascript
   const modalContent = document.createElement("div");
   modalContent.className = "modalContent";
   modalContent.id = "modalContent";
 ```
-3. Crea un pulsante di chiusura per il modale e un'immagine per il pulsante di chiusura, e assegna l'URL dell'immagine del pulsante.
+- Crea un pulsante di chiusura per il modale e un'immagine per il pulsante di chiusura, e assegna l'URL dell'immagine del pulsante.
 ```javascript
   const closeButton = document.createElement("span");
   closeButton.classList.add("close");
@@ -384,12 +403,12 @@ async function showModal(link, description, coverBook) {
   imgButton.classList.add("imgButton");
   imgButton.src = "asset/img/iconsX.png";
 ```
-4. Estrae il titolo del libro e l'autore dal link al libro.
+- Estrae il titolo del libro e l'autore dal link al libro.
 ```javascript
   const linkTitle = link.textContent;
   const linkAuthor = link.parentElement.nextElementSibling.textContent;
 ```
-5. Crea un'immagine per la copertina del libro e assegna l'URL dell'immagine di copertina e un testo alternativo.
+- Crea un'immagine per la copertina del libro e assegna l'URL dell'immagine di copertina e un testo alternativo.
 ```javascript
   const imgCover = document.createElement("img");
   imgCover.src = coverBook;
@@ -397,7 +416,7 @@ async function showModal(link, description, coverBook) {
   imgCover.id = "imgCover";
 
 ```
-6. Crea elementi `h3` e `h4` per il titolo del libro e l'autore, rispettivamente, e assegna il titolo del libro e l'autore.Crea un elemento `p` per la descrizione del libro e assegna la descrizione.
+- Crea elementi `h3` e `h4` per il titolo del libro e l'autore, rispettivamente, e assegna il titolo del libro e l'autore.Crea un elemento `p` per la descrizione del libro e assegna la descrizione.
 ```javascript
   const bookTitle = document.createElement("h3");
   bookTitle.textContent = linkTitle;
@@ -410,7 +429,7 @@ async function showModal(link, description, coverBook) {
   bookDescription.innerText = description;
   bookDescription.id = "description";
 ```
-7. Aggiunge tutti gli elementi creati al contenuto del modale e poi aggiunge il contenuto del modale all'elemento del modale.
+- Aggiunge tutti gli elementi creati al contenuto del modale e poi aggiunge il contenuto del modale all'elemento del modale.
 ```javascript
   modalContent.appendChild(imgCover);
   modalContent.appendChild(bookTitle);
@@ -420,7 +439,7 @@ async function showModal(link, description, coverBook) {
   modalContent.appendChild(closeButton);
   modalBook.appendChild(modalContent);
 ```
-8. Infine, aggiunge un gestore di eventi al pulsante di chiusura che nasconde il modale e mostra i risultati quando viene cliccato.
+- Infine, aggiunge un gestore di eventi al pulsante di chiusura che nasconde il modale e mostra i risultati quando viene cliccato.
 ```javascript
   const close = document.querySelector(".imgButton");
   close.addEventListener("click", (e) => {
