@@ -8,8 +8,6 @@ const covers = coverContext.keys().map(coverContext);
 import iconsX from "./asset/img/iconsX.png";
 const logoContext = require.context('./asset/logo', false, /\.(png|jpe?g|svg)$/);
 const logos = logoContext.keys().map(logoContext);
-const demoContext = require.context('./asset/demo', false, /\.(png|jpe?g|svg)$/);
-const demo = logoContext.keys().map(demoContext);
 
 // Import functions for creating book objects, previews, and getting book info
 const subjects = require("./js/subjects");
