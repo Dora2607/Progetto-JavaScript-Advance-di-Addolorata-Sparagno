@@ -27,6 +27,9 @@ Informazioni sul libro: Dopo aver cliccato sul titolo di un libro, l’applicazi
 ## Links
 
 [ChooseYourBook!](https://dora2607.github.io/Progetto-JavaScript-Advance-di-Addolorata-Sparagno/): per provare l'applicazione.
+## Links
+
+[ChooseYourBook!](https://dora2607.github.io/Progetto-JavaScript-Advance-di-Addolorata-Sparagno/): per provare l'applicazione.
 
 ## Installazione
 
