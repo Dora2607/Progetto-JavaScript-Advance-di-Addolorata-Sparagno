@@ -361,7 +361,7 @@ Se non viene trovato alcun ISBN, la funzione restituisce `null`.
 La funzione `showModal` è una funzione asincrona che mostra un modale con le informazioni del libro quando viene cliccato un link al libro. Prende tre parametri: `link`, `description` e `coverBook`, che rappresentano rispettivamente il link al libro, la descrizione del libro e l'URL dell'immagine di copertina del libro.
 
 
-1. La funzione inizia ottenendo un riferimento all'elemento del DOM con l'ID "modalBook" e rimuovendo tutti i suoi figli. Questo assicura che il modale sia vuoto prima di essere popolato con le nuove informazioni del libro.
+- La funzione inizia ottenendo un riferimento all'elemento del DOM con l'ID "modalBook" e rimuovendo tutti i suoi figli. Questo assicura che il modale sia vuoto prima di essere popolato con le nuove informazioni del libro.
 ```javascript
 async function showModal(link, description, coverBook) {
   const modalBook = document.getElementById("modalBook");
@@ -370,13 +370,13 @@ async function showModal(link, description, coverBook) {
   };
 ```
 
-2. Successivamente, crea un nuovo elemento `div` per il contenuto del modale e gli assegna la classe "modalContent" e l'ID "modalContent".
+- Successivamente, crea un nuovo elemento `div` per il contenuto del modale e gli assegna la classe "modalContent" e l'ID "modalContent".
 ```javascript
   const modalContent = document.createElement("div");
   modalContent.className = "modalContent";
   modalContent.id = "modalContent";
 ```
-3. Crea un pulsante di chiusura per il modale e un'immagine per il pulsante di chiusura, e assegna l'URL dell'immagine del pulsante.
+- Crea un pulsante di chiusura per il modale e un'immagine per il pulsante di chiusura, e assegna l'URL dell'immagine del pulsante.
 ```javascript
   const closeButton = document.createElement("span");
   closeButton.classList.add("close");
@@ -384,12 +384,12 @@ async function showModal(link, description, coverBook) {
   imgButton.classList.add("imgButton");
   imgButton.src = "asset/img/iconsX.png";
 ```
-4. Estrae il titolo del libro e l'autore dal link al libro.
+- Estrae il titolo del libro e l'autore dal link al libro.
 ```javascript
   const linkTitle = link.textContent;
   const linkAuthor = link.parentElement.nextElementSibling.textContent;
 ```
-5. Crea un'immagine per la copertina del libro e assegna l'URL dell'immagine di copertina e un testo alternativo.
+- Crea un'immagine per la copertina del libro e assegna l'URL dell'immagine di copertina e un testo alternativo.
 ```javascript
   const imgCover = document.createElement("img");
   imgCover.src = coverBook;
@@ -397,7 +397,7 @@ async function showModal(link, description, coverBook) {
   imgCover.id = "imgCover";
 
 ```
-6. Crea elementi `h3` e `h4` per il titolo del libro e l'autore, rispettivamente, e assegna il titolo del libro e l'autore.Crea un elemento `p` per la descrizione del libro e assegna la descrizione.
+- Crea elementi `h3` e `h4` per il titolo del libro e l'autore, rispettivamente, e assegna il titolo del libro e l'autore.Crea un elemento `p` per la descrizione del libro e assegna la descrizione.
 ```javascript
   const bookTitle = document.createElement("h3");
   bookTitle.textContent = linkTitle;
@@ -410,7 +410,7 @@ async function showModal(link, description, coverBook) {
   bookDescription.innerText = description;
   bookDescription.id = "description";
 ```
-7. Aggiunge tutti gli elementi creati al contenuto del modale e poi aggiunge il contenuto del modale all'elemento del modale.
+- Aggiunge tutti gli elementi creati al contenuto del modale e poi aggiunge il contenuto del modale all'elemento del modale.
 ```javascript
   modalContent.appendChild(imgCover);
   modalContent.appendChild(bookTitle);
@@ -420,7 +420,7 @@ async function showModal(link, description, coverBook) {
   modalContent.appendChild(closeButton);
   modalBook.appendChild(modalContent);
 ```
-8. Infine, aggiunge un gestore di eventi al pulsante di chiusura che nasconde il modale e mostra i risultati quando viene cliccato.
+- Infine, aggiunge un gestore di eventi al pulsante di chiusura che nasconde il modale e mostra i risultati quando viene cliccato.
 ```javascript
   const close = document.querySelector(".imgButton");
   close.addEventListener("click", (e) => {
