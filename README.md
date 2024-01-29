@@ -24,6 +24,9 @@ Risultati della ricerca: Dopo aver cliccato su “Search”, l’applicazione mo
 ![Demo5](demo/demo5.jpg)
 Informazioni sul libro: Dopo aver cliccato sul titolo di un libro, l’applicazione mostra una schermata con le informazioni dettagliate del libro. Queste informazioni includono la descrizione del libro e un’immagine di copertina.
 
+## Links
+
+[ChooseYourBook!](https://dora2607.github.io/Progetto-JavaScript-Advance-di-Addolorata-Sparagno/): per provare l'applicazione.
 
 ## Installazione
 
@@ -433,9 +436,6 @@ async function showModal(link, description, coverBook) {
 ```
 In questo modo, la funzione `showModal` fornisce un modo interattivo per visualizzare le informazioni dettagliate su un libro in un modale.
 
-## Links
-
-[nome link](link): per provare l'applicazione
-
 ## Ringraziamenti 
 
+Un ringraziamento a start2impact e a chiunque stia dando un'occhiata a questo progetto! Sto ancora navigando nel mio percorso di apprendimento, ma volevo prendere un momento per dire quanto sia grato per questa esperienza. Grazie per il supporto, i feedback e per aver reso questo viaggio così interessante.
