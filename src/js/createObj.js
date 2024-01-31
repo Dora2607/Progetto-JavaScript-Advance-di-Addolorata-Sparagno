@@ -1,8 +1,7 @@
-const { default: axios } = require("axios");
-const { default: _, forEach } = require("lodash");
+import axios from 'axios';
 
 //reates an array of objects containing book details for a given category
-async function createObj(category) {
+export async function createObj(category) {
   try {
     const response = await axios.get(
       "https://openlibrary.org/subjects/" + category + ".json"
@@ -26,4 +25,4 @@ async function createObj(category) {
     console.log("Error in creating object", error);
   }
 }
-module.exports = createObj;
+

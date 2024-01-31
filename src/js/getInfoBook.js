@@ -1,5 +1,5 @@
-const { default: axios } = require("axios");
-const _ = require("lodash");
+import axios from 'axios';
+import _ from 'lodash';
 
 async function getCoverBook(coverData) {
   try {
@@ -19,7 +19,7 @@ async function getCoverBook(coverData) {
   }
 }
 
-async function getInfoBook(id1, id2) {
+export async function getInfoBook(id1, id2) {
   let arrayInfo = [];
   let objInfo = {};
   let coverBook;
@@ -67,4 +67,4 @@ async function getInfoBook(id1, id2) {
   return arrayInfo;
 }
 
-module.exports = getInfoBook;
+

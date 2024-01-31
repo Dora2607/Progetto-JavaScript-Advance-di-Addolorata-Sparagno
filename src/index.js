@@ -1,6 +1,6 @@
 // Import necessary modules and libraries
 import "./css/style.css";
-const _ = require("lodash");
+import _ from "lodash";
 
 // Import images 
 const coverContext = require.context('./asset/img', false, /cover[1-3]\.jpg$/);
@@ -10,14 +10,12 @@ const logoContext = require.context('./asset/logo', false, /\.(png|jpe?g|svg)$/)
 const logos = logoContext.keys().map(logoContext);
 
 // Import functions for creating book objects, previews, and getting book info
-const subjects = require("./js/subjects");
-const showSuggestions = require("./js/showSuggestions");
-const createObj = require("./js/createObj");
-const createPreview = require("./js/createPreview");
-const getInfoBook = require("./js/getInfoBook");
-const showModal = require("./js/showModal");
-
-
+import {subjects} from "./js/subjects";
+import {showSuggestions} from "./js/showSuggestions";
+import {createObj} from "./js/createObj";
+import {createPreview} from "./js/createPreview";
+import {getInfoBook} from "./js/getInfoBook";
+import {showModal} from "./js/showModal";
 
 
 // Add an event listener to the search bar for input events
@@ -28,8 +26,6 @@ if (searchBar != null) {
     showSuggestions(value, subjects);
   });
 }
-
-
 
 // Add a click event listener to the search button
 const searchButton = document.querySelector(".searchButton");

@@ -1,6 +1,6 @@
 
 // This function displays a modal with book information when a book link is clicked
-async function showModal(link, description, coverBook) {
+export async function showModal(link, description, coverBook) {
   const modalBook = document.getElementById("modalBook");
   while (modalBook.firstChild) {
     modalBook.removeChild(modalBook.firstChild);
@@ -49,6 +49,6 @@ async function showModal(link, description, coverBook) {
   });
 }
 
-module.exports = showModal;
+
 
 //<a target="_blank" href="https://icons8.com/icon/dnWj68fbIjQS/moltiplicare">X</a> icona di <a target="_blank" href="https://icons8.com">Icons8</a>

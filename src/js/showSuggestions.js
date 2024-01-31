@@ -1,5 +1,5 @@
 // Function to display suggestions based on the input value and subjects array
-function showSuggestions(value, subjects) {
+export function showSuggestions(value, subjects) {
   const suggestions = document.getElementById("suggestions");
   suggestions.style.display = "none";
   suggestions.innerHTML = "";
@@ -23,4 +23,4 @@ function showSuggestions(value, subjects) {
   }
 }
 
-module.exports = showSuggestions;
+

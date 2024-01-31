@@ -1,4 +1,4 @@
-const subjects = [
+export const subjects = [
     "Architecture",
     "Art Instruction",
     "Art History",
@@ -94,4 +94,3 @@ const subjects = [
     "Japanese",
   ];
 
-  module.exports = subjects;

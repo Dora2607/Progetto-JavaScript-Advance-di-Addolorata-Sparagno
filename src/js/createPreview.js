@@ -1,9 +1,8 @@
-const { default: axios } = require("axios");
-const { default: _, forEach } = require("lodash");
-const createObj = require("./createObj");
+import {createObj} from './createObj';
+
 
 // Function to create book previews based on the given category
-async function createPreview(category) {
+export async function createPreview(category) {
   let bookInfo = await createObj(category);
   if (bookInfo.length === 0) {
     alert("No results found!");
@@ -29,4 +28,4 @@ async function createPreview(category) {
   }
 }
 
-module.exports = createPreview;
+
