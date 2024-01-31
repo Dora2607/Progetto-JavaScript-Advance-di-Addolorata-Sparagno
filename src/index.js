@@ -2,21 +2,24 @@
 import "./css/style.css";
 import _ from "lodash";
 
-// Import images 
-const coverContext = require.context('./asset/img', false, /cover[1-3]\.jpg$/);
+// Import images
+const coverContext = require.context("./asset/img", false, /cover[1-3]\.jpg$/);
 const covers = coverContext.keys().map(coverContext);
 import iconsX from "./asset/img/iconsX.png";
-const logoContext = require.context('./asset/logo', false, /\.(png|jpe?g|svg)$/);
+const logoContext = require.context(
+  "./asset/logo",
+  false,
+  /\.(png|jpe?g|svg)$/
+);
 const logos = logoContext.keys().map(logoContext);
 
 // Import functions for creating book objects, previews, and getting book info
-import {subjects} from "./js/subjects";
-import {showSuggestions} from "./js/showSuggestions";
-import {createObj} from "./js/createObj";
-import {createPreview} from "./js/createPreview";
-import {getInfoBook} from "./js/getInfoBook";
-import {showModal} from "./js/showModal";
-
+import { subjects } from "./js/subjects";
+import { showSuggestions } from "./js/showSuggestions";
+import { createObj } from "./js/createObj";
+import { createPreview } from "./js/createPreview";
+import { getInfoBook } from "./js/getInfoBook";
+import { showModal } from "./js/showModal";
 
 // Add an event listener to the search bar for input events
 const searchBar = document.getElementById("searchBar");
@@ -44,10 +47,10 @@ searchButton.addEventListener("click", async () => {
     linkDescription.forEach((link) => {
       link.addEventListener("click", async (e) => {
         e.preventDefault();
-        const  bookCardId = link.parentNode.parentNode;
+        const bookCardId = link.parentNode.parentNode;
         let coverKey = bookCardId.id;
         let key = link.id;
-        let showInfoBook = await getInfoBook(key,coverKey);
+        let showInfoBook = await getInfoBook(key, coverKey);
         showModal(link, showInfoBook[0].description, showInfoBook[0].coverBook);
         const modalBook = document.getElementById("modalBook");
         modalBook.style.display = "flex";
@@ -59,10 +62,8 @@ searchButton.addEventListener("click", async () => {
 });
 
 // Add a click event listener to the searchBar
-searchBar.addEventListener("click", function() {
+searchBar.addEventListener("click", function () {
   modalBook.style.display = "none";
   const results = document.getElementById("results");
   results.style.display = "flex";
 });
-
-
