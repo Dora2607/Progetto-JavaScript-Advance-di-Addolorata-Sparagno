@@ -6,7 +6,7 @@ async function getCoverBook(coverData) {
     const cover = await axios.get(
       "https://openlibrary.org" + coverData + ".json"
     );
-    let resultCover = cover.data;
+    const resultCover = cover.data;
     let isbn =
       _.get(resultCover, "isbn_13[0]") || _.get(resultCover, "isbn_10[0]");
     if (!isbn) {
@@ -26,7 +26,7 @@ async function getInfoBook(id1, id2) {
 
   // Extract the book description from the response data
   const response = await axios.get("https://openlibrary.org" + id1 + ".json");
-  let info = response.data;
+  const info = response.data;
   let description = _.get(info, "description");
   if (typeof description === "string") {
   } else if (
@@ -41,7 +41,7 @@ async function getInfoBook(id1, id2) {
   objInfo["description"] = description;
 
   // Extract the cover edition information from the response data
-  let coverEdition = response.data.cover_edition;
+  const coverEdition = response.data.cover_edition;
   if (coverEdition) {
     coverBook = await getCoverBook(coverEdition.key);
   } else if (id2 !== "null") {
@@ -51,13 +51,13 @@ async function getInfoBook(id1, id2) {
 
   // If no coverBook is found, use a random book cover image
   if (!coverBook) {
-    let images = [
+    const images = [
       "asset/img/cover1.jpg",
       "asset/img/cover2.jpg",
       "asset/img/cover3.jpg",
     ];
-    let randomIndex = Math.floor(Math.random() * images.length);
-    let randomImage = images[randomIndex];
+    const randomIndex = Math.floor(Math.random() * images.length);
+    const randomImage = images[randomIndex];
     coverBook = randomImage;
   }
 

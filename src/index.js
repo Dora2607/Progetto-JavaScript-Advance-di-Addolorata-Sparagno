@@ -24,7 +24,7 @@ const showModal = require("./js/showModal");
 const searchBar = document.getElementById("searchBar");
 if (searchBar != null) {
   searchBar.addEventListener("input", function () {
-    const value = this.value;
+    let value = this.value;
     showSuggestions(value, subjects);
   });
 }
@@ -48,7 +48,7 @@ searchButton.addEventListener("click", async () => {
     linkDescription.forEach((link) => {
       link.addEventListener("click", async (e) => {
         e.preventDefault();
-        let  bookCardId = link.parentNode.parentNode;
+        const  bookCardId = link.parentNode.parentNode;
         let coverKey = bookCardId.id;
         let key = link.id;
         let showInfoBook = await getInfoBook(key,coverKey);

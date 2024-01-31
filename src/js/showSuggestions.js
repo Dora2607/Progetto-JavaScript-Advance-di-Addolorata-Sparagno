@@ -10,7 +10,7 @@ function showSuggestions(value, subjects) {
     if (matches.length > 0) {
       suggestions.style.display = "block";
       matches.forEach(function (match) {
-        let div = document.createElement("div");
+        const div = document.createElement("div");
         div.classList.add("showSuggestionStyle");
         div.innerHTML = match;
         div.onclick = function () {

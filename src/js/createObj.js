@@ -8,7 +8,7 @@ async function createObj(category) {
       "https://openlibrary.org/subjects/" + category + ".json"
     );
     const obj = response.data.works;
-    const objArray = [];
+    let objArray = [];
     obj.forEach((element) => {
       let newObj = {};
       newObj["key"] = element.key;

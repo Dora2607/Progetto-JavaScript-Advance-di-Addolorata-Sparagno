@@ -4,7 +4,7 @@ const createObj = require("./createObj");
 
 // Function to create book previews based on the given category
 async function createPreview(category) {
-  const bookInfo = await createObj(category);
+  let bookInfo = await createObj(category);
   if (bookInfo.length === 0) {
     alert("No results found!");
   } else {
