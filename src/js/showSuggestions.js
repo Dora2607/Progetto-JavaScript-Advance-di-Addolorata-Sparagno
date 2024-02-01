@@ -4,7 +4,7 @@ export function showSuggestions(value, subjects) {
   suggestions.style.display = "none";
   suggestions.innerHTML = "";
   if (value.length > 0) {
-    let matches = subjects.filter(function (subject) {
+    const matches = subjects.filter(function (subject) {
       return subject.toLowerCase().startsWith(value.toLowerCase());
     });
     if (matches.length > 0) {
@@ -22,5 +22,3 @@ export function showSuggestions(value, subjects) {
     }
   }
 }
-
-

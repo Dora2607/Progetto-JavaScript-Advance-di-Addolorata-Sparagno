@@ -1,10 +1,10 @@
-
 // This function displays a modal with book information when a book link is clicked
+
 export async function showModal(link, description, coverBook) {
   const modalBook = document.getElementById("modalBook");
   while (modalBook.firstChild) {
     modalBook.removeChild(modalBook.firstChild);
-  };
+  }
   const modalContent = document.createElement("div");
   modalContent.className = "modalContent";
   modalContent.id = "modalContent";
@@ -49,6 +49,4 @@ export async function showModal(link, description, coverBook) {
   });
 }
 
-
-
-//<a target="_blank" href="https://icons8.com/icon/dnWj68fbIjQS/moltiplicare">X</a> icona di <a target="_blank" href="https://icons8.com">Icons8</a>
+// <a target="_blank" href="https://icons8.com/icon/dnWj68fbIjQS/moltiplicare">X</a> icona di <a target="_blank" href="https://icons8.com">Icons8</a>

@@ -1,9 +1,8 @@
-import {createObj} from './createObj';
-
+import { createObj } from "./createObj";
 
 // Function to create book previews based on the given category
 export async function createPreview(category) {
-  let bookInfo = await createObj(category);
+  const bookInfo = await createObj(category);
   if (bookInfo.length === 0) {
     alert("No results found!");
   } else {
@@ -27,5 +26,3 @@ export async function createPreview(category) {
     });
   }
 }
-
-
