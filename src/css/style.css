@@ -4,27 +4,8 @@
   box-sizing: border-box;
 }
 
-:root {
-  --background: #d8d7cf;
-  --h1-text: #3d5956 ;
-  --primary-background: #f7f7f5;
-  --border1: #b4b0a0;
-  --button-color: #e5c1bd;
-  --background-card: #62929e;
-  --text-card: #6b6a6a;
-
-  --oversize2:28px;
-  --oversize3:24px;
-  --oversize4:22px;
-  --size1: 20px;
-  --size2: 18px;
-  --size3: 16px;
-  --size4: 14px;
-  --sizep: 12px;
-}
-
 body {
-  background-color: var(--background);
+  background-color: #d8d7cf;
   font-family: "Roboto", sans-serif;
 }
 
@@ -33,25 +14,25 @@ body {
 h1 {
   font-family: "Oleo Script", sans-serif;
   font-size: 42px;
-  color: var(--h1-text);
+  color: #3d5956;
   text-align: center;
 }
 
 h2 {
-  font-size: var(--size2);
+  font-size: 18px;
   text-align: center;
 }
 
 h3 {
-  font-size: var(--size3);
+  font-size: 16px;
 }
 
 h4 {
-  font-size: var(--size4);
+  font-size: 14px;
 }
 
 p {
-  font-size: var(--sizep);
+  font-size: 12px;
 }
 
 /*Styling of the elements*/
@@ -82,31 +63,31 @@ p {
   height: 30px;
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
-  background-color: var(--primary-background);
-  border: 1px solid var(--border1);
+  background-color: #f7f7f5;
+  border: 1px solid #b4b0a0;
   border-right: none;
-  font-size: var(--sizep);
+  font-size: 12px;
 }
 
 .searchButton {
   height: 30px;
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
-  border: 1px solid var(--border1);
+  border: 1px solid #b4b0a0;
   border-left: none;
-  background-color: var(--button-color);
+  background-color: #e5c1bd;
   padding: 0 0.5rem 0 0.5rem;
-  font-size: var(--sizep);
+  font-size: 12px;
 }
 
 .searchBar:focus {
-  outline: 1px solid var(--button-color);
+  outline: 1px solid #e5c1bd;
 }
 
 .searchButton:hover {
   cursor: pointer;
   color: #d9d9d9;
-  background-color: var(--h1-text);
+  background-color: #3d5956;
   font-weight: 700;
 }
 
@@ -128,8 +109,8 @@ p {
 .showSuggestionStyle {
   width: 100%;
   padding: 0.5rem 0.65rem;
-  font-size: var(--sizep);
-  background-color: var(--primary-background);
+  font-size: 12px;
+  background-color: #f7f7f5;
   text-align: left;
   cursor: pointer;
 }
@@ -157,7 +138,7 @@ p {
   width: 200px;
   padding: 1rem;
   transition: all 0.2s ease-in-out;
-  background-color: var(--background-card);
+  background-color: #62929e;
   margin: 1rem;
   border-radius: 0.25rem;
   overflow: auto;
@@ -201,7 +182,7 @@ p {
 .modalContent {
   width: 280px;
   max-width: 90vw;
-  background-color: var(--primary-background);
+  background-color: #f7f7f5;
   padding: 25px;
   border: 2px solid #919191;
   display: flex;
@@ -216,7 +197,7 @@ p {
 }
 #authorTitle,
 #description {
-  color: var(--text-card);
+  color: #6b6a6a;
 }
 
 #description {
@@ -247,21 +228,21 @@ p {
     text-align: left;
   }
   h2 {
-    font-size: var(--size1);
+    font-size: 20px;
     text-align: left;
     padding-left: 0.8rem;
   }
 
   h3 {
-    font-size: var(--size2);
+    font-size: 18px;
   }
 
   h4 {
-    font-size:var(--size3) ;
+    font-size: 16px;
   }
 
   p {
-    font-size: var(--size4);
+    font-size: 14px;
   }
 
   /*Styling of the elements*/
@@ -271,13 +252,13 @@ p {
   }
   .searchBar {
     height: 40px;
-    font-size: var(--size4);
+    font-size: 14px;
     padding: 12px 20px;
   }
 
   .searchButton {
     height: 40px;
-    font-size: var(--size4);
+    font-size: 14px;
   }
 
   .searchBarContainer {
@@ -290,7 +271,7 @@ p {
   }
 
   .showSuggestionStyle {
-    font-size: var(--size4);
+    font-size: 14px;
   }
 
   .modalContent {
@@ -307,24 +288,24 @@ p {
     font-size: 58px;
   }
   h2 {
-    font-size: var(--oversize4);
+    font-size: 22px;
   }
   h3 {
-    font-size: var(--size1);
+    font-size: 20px;
   }
   h4 {
-    font-size: var(--size2);
+    font-size: 18px;
   }
 
   p {
-    font-size: var(--size3);
+    font-size: 16px;
   }
 
   /*Styling of the elements*/
   .searchBar,
   .searchButton {
     height: 50px;
-    font-size:var(--size3);
+    font-size: 16px;
   }
 
   .searchBarContainer {
@@ -337,7 +318,7 @@ p {
   }
 
   .showSuggestionStyle {
-    font-size: var(--size3);
+    font-size: 16px;
   }
 }
 
@@ -347,24 +328,24 @@ p {
     font-size: 66px;
   }
   h2 {
-    font-size: var(--oversize3);
+    font-size: 24px;
   }
   h3 {
-    font-size: var(--oversize4);
+    font-size: 22px;
   }
   h4 {
-    font-size: var(--size1);
+    font-size: 20px;
   }
 
   p {
-    font-size: var(--size2);
+    font-size: 18px;
   }
 
   /*Styling of the elements*/
   .searchBar,
   .searchButton {
     height: 55px;
-    font-size: var(--size2);
+    font-size: 18px;
   }
 
   .searchBarContainer {
@@ -377,7 +358,7 @@ p {
   }
 
   .showSuggestionStyle {
-    font-size: var(--size2);
+    font-size: 18px;
   }
 }
 
@@ -387,22 +368,22 @@ p {
     font-size: 74px;
   }
   h2 {
-    font-size: var(--oversize2);
+    font-size: 28px;
   }
   h3 {
-    font-size: var(--oversize3);
+    font-size: 24px;
   }
   h4 {
-    font-size: var(--oversize4);
+    font-size: 22px;
   }
 
   p {
-    font-size: var(--size1);
+    font-size: 20px;
   }
   /*Styling of the elements*/
   .searchBar,
   .searchButton {
     height: 60px;
-    font-size: var(--size2);
+    font-size: 18px;
   }
 }
