@@ -4,8 +4,27 @@
   box-sizing: border-box;
 }
 
+:root {
+  --background: #d8d7cf;
+  --h1-text: #3d5956 ;
+  --primary-background: #f7f7f5;
+  --border1: #b4b0a0;
+  --button-color: #e5c1bd;
+  --background-card: #62929e;
+  --text-card: #6b6a6a;
+
+  --oversize2:28px;
+  --oversize3:24px;
+  --oversize4:22px;
+  --size1: 20px;
+  --size2: 18px;
+  --size3: 16px;
+  --size4: 14px;
+  --sizep: 12px;
+}
+
 body {
-  background-color: #d8d7cf;
+  background-color: var(--background);
   font-family: "Roboto", sans-serif;
 }
 
@@ -14,25 +33,25 @@ body {
 h1 {
   font-family: "Oleo Script", sans-serif;
   font-size: 42px;
-  color: #3d5956;
+  color: var(--h1-text);
   text-align: center;
 }
 
 h2 {
-  font-size: 18px;
+  font-size: var(--size2);
   text-align: center;
 }
 
 h3 {
-  font-size: 16px;
+  font-size: var(--size3);
 }
 
 h4 {
-  font-size: 14px;
+  font-size: var(--size4);
 }
 
 p {
-  font-size: 12px;
+  font-size: var(--sizep);
 }
 
 /*Styling of the elements*/
@@ -63,31 +82,31 @@ p {
   height: 30px;
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
-  background-color: #f7f7f5;
-  border: 1px solid #b4b0a0;
+  background-color: var(--primary-background);
+  border: 1px solid var(--border1);
   border-right: none;
-  font-size: 12px;
+  font-size: var(--sizep);
 }
 
 .searchButton {
   height: 30px;
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
-  border: 1px solid #b4b0a0;
+  border: 1px solid var(--border1);
   border-left: none;
-  background-color: #e5c1bd;
+  background-color: var(--button-color);
   padding: 0 0.5rem 0 0.5rem;
-  font-size: 12px;
+  font-size: var(--sizep);
 }
 
 .searchBar:focus {
-  outline: 1px solid #e5c1bd;
+  outline: 1px solid var(--button-color);
 }
 
 .searchButton:hover {
   cursor: pointer;
   color: #d9d9d9;
-  background-color: #3d5956;
+  background-color: var(--h1-text);
   font-weight: 700;
 }
 
@@ -109,8 +128,8 @@ p {
 .showSuggestionStyle {
   width: 100%;
   padding: 0.5rem 0.65rem;
-  font-size: 12px;
-  background-color: #f7f7f5;
+  font-size: var(--sizep);
+  background-color: var(--primary-background);
   text-align: left;
   cursor: pointer;
 }
@@ -138,7 +157,7 @@ p {
   width: 200px;
   padding: 1rem;
   transition: all 0.2s ease-in-out;
-  background-color: #62929e;
+  background-color: var(--background-card);
   margin: 1rem;
   border-radius: 0.25rem;
   overflow: auto;
@@ -182,7 +201,7 @@ p {
 .modalContent {
   width: 280px;
   max-width: 90vw;
-  background-color: #f7f7f5;
+  background-color: var(--primary-background);
   padding: 25px;
   border: 2px solid #919191;
   display: flex;
@@ -197,7 +216,7 @@ p {
 }
 #authorTitle,
 #description {
-  color: #6b6a6a;
+  color: var(--text-card);
 }
 
 #description {
@@ -228,21 +247,21 @@ p {
     text-align: left;
   }
   h2 {
-    font-size: 20px;
+    font-size: var(--size1);
     text-align: left;
     padding-left: 0.8rem;
   }
 
   h3 {
-    font-size: 18px;
+    font-size: var(--size2);
   }
 
   h4 {
-    font-size: 16px;
+    font-size:var(--size3) ;
   }
 
   p {
-    font-size: 14px;
+    font-size: var(--size4);
   }
 
   /*Styling of the elements*/
@@ -252,13 +271,13 @@ p {
   }
   .searchBar {
     height: 40px;
-    font-size: 14px;
+    font-size: var(--size4);
     padding: 12px 20px;
   }
 
   .searchButton {
     height: 40px;
-    font-size: 14px;
+    font-size: var(--size4);
   }
 
   .searchBarContainer {
@@ -271,7 +290,7 @@ p {
   }
 
   .showSuggestionStyle {
-    font-size: 14px;
+    font-size: var(--size4);
   }
 
   .modalContent {
@@ -288,24 +307,24 @@ p {
     font-size: 58px;
   }
   h2 {
-    font-size: 22px;
+    font-size: var(--oversize4);
   }
   h3 {
-    font-size: 20px;
+    font-size: var(--size1);
   }
   h4 {
-    font-size: 18px;
+    font-size: var(--size2);
   }
 
   p {
-    font-size: 16px;
+    font-size: var(--size3);
   }
 
   /*Styling of the elements*/
   .searchBar,
   .searchButton {
     height: 50px;
-    font-size: 16px;
+    font-size:var(--size3);
   }
 
   .searchBarContainer {
@@ -318,7 +337,7 @@ p {
   }
 
   .showSuggestionStyle {
-    font-size: 16px;
+    font-size: var(--size3);
   }
 }
 
@@ -328,24 +347,24 @@ p {
     font-size: 66px;
   }
   h2 {
-    font-size: 24px;
+    font-size: var(--oversize3);
   }
   h3 {
-    font-size: 22px;
+    font-size: var(--oversize4);
   }
   h4 {
-    font-size: 20px;
+    font-size: var(--size1);
   }
 
   p {
-    font-size: 18px;
+    font-size: var(--size2);
   }
 
   /*Styling of the elements*/
   .searchBar,
   .searchButton {
     height: 55px;
-    font-size: 18px;
+    font-size: var(--size2);
   }
 
   .searchBarContainer {
@@ -358,7 +377,7 @@ p {
   }
 
   .showSuggestionStyle {
-    font-size: 18px;
+    font-size: var(--size2);
   }
 }
 
@@ -368,22 +387,22 @@ p {
     font-size: 74px;
   }
   h2 {
-    font-size: 28px;
+    font-size: var(--oversize2);
   }
   h3 {
-    font-size: 24px;
+    font-size: var(--oversize3);
   }
   h4 {
-    font-size: 22px;
+    font-size: var(--oversize4);
   }
 
   p {
-    font-size: 20px;
+    font-size: var(--size1);
   }
   /*Styling of the elements*/
   .searchBar,
   .searchButton {
     height: 60px;
-    font-size: 18px;
+    font-size: var(--size2);
   }
 }
