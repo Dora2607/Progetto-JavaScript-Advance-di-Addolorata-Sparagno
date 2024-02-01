@@ -3,8 +3,9 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const ESLintPlugin = require("eslint-webpack-plugin");
 
-const isProduction = process.env.NODE_ENV == "production";
+const isProduction = process.env.NODE_ENV === "production";
 
 const stylesHandler = isProduction
   ? MiniCssExtractPlugin.loader
@@ -36,6 +37,8 @@ const config = {
       _: "lodash",
     }),
 
+    new ESLintPlugin(),
+
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
   ],
@@ -64,7 +67,7 @@ const config = {
       },
       {
         test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
-        include: path.resolve(__dirname, 'src/asset/logo'),
+        include: path.resolve(__dirname, "src/asset/logo"),
         type: "asset/resource",
         generator: {
           filename: "asset/logo/[name][ext]",

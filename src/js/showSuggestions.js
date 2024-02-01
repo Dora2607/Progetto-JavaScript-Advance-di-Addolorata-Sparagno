@@ -4,12 +4,12 @@ export function showSuggestions(value, subjects) {
   suggestions.style.display = "none";
   suggestions.innerHTML = "";
   if (value.length > 0) {
-    let matches = subjects.filter(function (subject) {
-      return subject.toLowerCase().startsWith(value.toLowerCase());
-    });
+    const matches = subjects.filter((subject) =>
+      subject.toLowerCase().startsWith(value.toLowerCase()),
+    );
     if (matches.length > 0) {
       suggestions.style.display = "block";
-      matches.forEach(function (match) {
+      matches.forEach((match) => {
         const div = document.createElement("div");
         div.classList.add("showSuggestionStyle");
         div.innerHTML = match;
@@ -22,5 +22,3 @@ export function showSuggestions(value, subjects) {
     }
   }
 }
-
-
