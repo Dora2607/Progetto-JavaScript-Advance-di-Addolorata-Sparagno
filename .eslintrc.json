@@ -11,6 +11,8 @@
     },
     "parser": "@babel/eslint-parser",
     "rules": {
-        "prettier/prettier": "error"
+        "prettier/prettier": "error",
+        "linebreak-style": ["error", "windows"]
+        
     }
 }

@@ -5,14 +5,16 @@
 }
 
 :root {
+  /*Colors*/
   --background: #d8d7cf;
-  --h1-text: #3d5956 ;
+  --header-text: #3d5956 ;
   --primary-background: #f7f7f5;
-  --border1: #b4b0a0;
+  --border-color: #b4b0a0;
   --button-color: #e5c1bd;
-  --background-card: #62929e;
-  --text-card: #6b6a6a;
+  --card-background: #62929e;
+  --text-color: #6b6a6a;
 
+  /*Font Sizes*/
   --oversize2:28px;
   --oversize3:24px;
   --oversize4:22px;
@@ -33,7 +35,7 @@ body {
 h1 {
   font-family: "Oleo Script", sans-serif;
   font-size: 42px;
-  color: var(--h1-text);
+  color: var(--header-text);
   text-align: center;
 }
 
@@ -83,7 +85,7 @@ p {
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
   background-color: var(--primary-background);
-  border: 1px solid var(--border1);
+  border: 1px solid var(--border-color);
   border-right: none;
   font-size: var(--sizep);
 }
@@ -92,7 +94,7 @@ p {
   height: 30px;
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
-  border: 1px solid var(--border1);
+  border: 1px solid var(--border-color);
   border-left: none;
   background-color: var(--button-color);
   padding: 0 0.5rem 0 0.5rem;
@@ -106,7 +108,7 @@ p {
 .searchButton:hover {
   cursor: pointer;
   color: #d9d9d9;
-  background-color: var(--h1-text);
+  background-color: var(--header-text);
   font-weight: 700;
 }
 
@@ -157,7 +159,7 @@ p {
   width: 200px;
   padding: 1rem;
   transition: all 0.2s ease-in-out;
-  background-color: var(--background-card);
+  background-color: var(--card-background);
   margin: 1rem;
   border-radius: 0.25rem;
   overflow: auto;
@@ -216,7 +218,7 @@ p {
 }
 #authorTitle,
 #description {
-  color: var(--text-card);
+  color: var(--text-color);
 }
 
 #description {

@@ -1,4 +1,4 @@
-// Import necessary modules and libraries
+// Import necessary modules and libraries;
 import "./css/style.css";
 import "./asset/img/iconsX.png";
 
