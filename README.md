@@ -92,16 +92,15 @@ Nelle sezioni seguenti, esamineremo più in dettaglio ciascuna delle funzioni ut
 
 Il file `index.js` è il punto di ingresso dell'applicazione. Ecco una descrizione dettagliata di ciascuna parte del codice:
 
-- **Import dei Moduli e delle Librerie**: All'inizio del file, vengono importati i moduli e le librerie necessarie, tra cui il foglio di stile CSS, la libreria Lodash e le immagini utilizzate nell'applicazione.
+- **Import dei Moduli**: All'inizio del file, vengono importati i moduli , tra cui il foglio di stile CSS e le immagini utilizzate nell'applicazione.
 
 ```javascript
 import "./css/style.css";
-const _ = require("lodash");
-const coverContext = require.context('./asset/img', false, /cover[1-3]\.jpg$/);
-const covers = coverContext.keys().map(coverContext);
-import iconsX from "./asset/img/iconsX.png";
-const logoContext = require.context('./asset/logo', false, /\.(png|jpe?g|svg)$/);
-const logos = logoContext.keys().map(logoContext);
+import "./asset/img/iconsX.png";
+const coverContext = require.context("./asset/img", false, /cover[1-3]\.jpg$/);
+coverContext.keys().map(coverContext);
+const logoContext = require.context("./asset/logo", false, /\.(png|jpe?g|svg)$/,);
+logoContext.keys().map(logoContext);
 ```
  La funzione require.context. crea un contesto che permette di importare dinamicamente un gruppo di file. In questo caso, sta importando tutte le immagini (.png, .jpg, .jpeg, .svg) dalla cartella asset/logo.
 
@@ -116,12 +115,11 @@ Il metodo keys restituisce un array di tutte le chiavi possibili (i percorsi dei
 - **Import delle Funzioni**: Successivamente, vengono importate diverse funzioni da altri file JavaScript. Queste funzioni sono utilizzate per creare oggetti di libri, mostrare suggerimenti, creare anteprime, ottenere informazioni sui libri e mostrare modali.
 
 ```javascript
-const subjects = require("./js/subjects");
-const showSuggestions = require("./js/showSuggestions");
-const createObj = require("./js/createObj");
-const createPreview = require("./js/createPreview");
-const getInfoBook = require("./js/getInfoBook");
-const showModal = require("./js/showModal");
+import { subjects } from "./js/subjects";
+import { showSuggestions } from "./js/showSuggestions";
+import { createPreview } from "./js/createPreview";
+import { getInfoBook } from "./js/getInfoBook";
+import { showModal } from "./js/showModal";
 ```
 - **Event Listener**: Vengono aggiunti degli event listener alla barra di ricerca e al pulsante di ricerca. Quando l’utente inserisce del testo nella barra di ricerca, vengono mostrati dei suggerimenti. Quando l’utente fa clic sul pulsante di ricerca, l’applicazione crea un’anteprima dei libri corrispondenti alla ricerca dell’utente.
 
@@ -142,7 +140,7 @@ In questo frammento di codice viene aggiunto un “ascoltatore di eventi” alla
 const searchButton = document.querySelector(".searchButton");
 searchButton.addEventListener("click", async () => {
   const searchBar = document.getElementById("searchBar");
-  let newUserInput = searchBar.value;
+  const newUserInput = searchBar.value;
   if (newUserInput === "") {
     alert("Enter text to search");
     return false;
@@ -155,10 +153,10 @@ searchButton.addEventListener("click", async () => {
     linkDescription.forEach((link) => {
       link.addEventListener("click", async (e) => {
         e.preventDefault();
-        let  bookCardId = link.parentNode.parentNode;
-        let coverKey = bookCardId.id;
-        let key = link.id;
-        let showInfoBook = await getInfoBook(key,coverKey);
+        const bookCardId = link.parentNode.parentNode;
+        const coverKey = bookCardId.id;
+        const key = link.id;
+        const showInfoBook = await getInfoBook(key, coverKey);
         showModal(link, showInfoBook[0].description, showInfoBook[0].coverBook);
         const modalBook = document.getElementById("modalBook");
         modalBook.style.display = "flex";
@@ -175,7 +173,8 @@ Inoltre, se la barra di ricerca è vuota, viene mostrato un messaggio di avviso 
 
 1. **searchBar Event Listener 2**
 ```javascript
-searchBar.addEventListener("click", function() {
+searchBar.addEventListener("click", function () {
+  const modalBook = document.getElementById("modalBook");
   modalBook.style.display = "none";
   const results = document.getElementById("results");
   results.style.display = "flex";
@@ -202,14 +201,14 @@ Nel file showSuggestions.js è contenuta la funzione `showSuggestions`, la quale
 - **Visualizzazione dei suggerimenti**: Se ci sono delle corrispondenze, la funzione crea un nuovo elemento `<div>` per ciascuna corrispondenza e lo aggiunge all'elemento "suggestions". Ogni `<div>` mostra un suggerimento e ha un ascoltatore di eventi "click" che imposta il valore della barra di ricerca sul suggerimento cliccato e nasconde l'elemento "suggestions".
 
 ```javascript
-  if (value.length > 0) {
-    let matches = subjects.filter(function (subject) {
+if (value.length > 0) {
+    const matches = subjects.filter(function (subject) {
       return subject.toLowerCase().startsWith(value.toLowerCase());
     });
     if (matches.length > 0) {
       suggestions.style.display = "block";
       matches.forEach(function (match) {
-        let div = document.createElement("div");
+        const div = document.createElement("div");
         div.classList.add("showSuggestionStyle");
         div.innerHTML = match;
         div.onclick = function () {
@@ -230,27 +229,28 @@ La funzione createObj è una funzione asincrona che crea un array di oggetti con
 
 - **Richiesta API**: La funzione fa una richiesta GET alle API di Open Library per ottenere informazioni sui libri della categoria specificata.
 ```javascript
-const response = await axios.get(
-  "https://openlibrary.org/subjects/" + category + ".json"
-);
+    const response = await axios.get(
+      "https://openlibrary.org/subjects/" + category + ".json",
+    );
 ```
 
 - **Creazione dell’array di oggetti**: La funzione poi crea un array di oggetti, dove ogni oggetto rappresenta un libro e contiene dettagli come la chiave del libro, il titolo, l’autore e la chiave dell’edizione di copertina.
 ```javascript
 const obj = response.data.works;
-const objArray = [];
-obj.forEach((element) => {
-  let newObj = {};
-  newObj["key"] = element.key;
-  newObj["title"] = element.title;
-  newObj["author"] = element.authors
-    .map(function (author) {
-      return author.name;
-    })
-    .join(", ");
-  newObj["cover"] = element.cover_edition_key;
-  objArray.push(newObj);
-});
+    const objArray = [];
+    obj.forEach((element) => {
+      const newObj = {};
+      newObj.key = element.key;
+      newObj.title = element.title;
+      newObj.author = element.authors
+        .map(function (author) {
+          return author.name;
+        })
+        .join(", ");
+      newObj.cover = element.cover_edition_key;
+      objArray.push(newObj);
+    });
+    return objArray;
 ```
 Infine, la funzione restituisce l’array di oggetti creato.
 
@@ -271,26 +271,26 @@ if (bookInfo.length === 0) {
 ```
 Creazione dell’anteprima: Se ci sono dei libri, la funzione crea un elemento <div> per ciascun libro e lo aggiunge all’elemento “results”. Ogni <div> mostra il titolo e l’autore del libro.
 ```javascript
-else {
-  const results = document.getElementById("results");
-  results.innerHTML = "";
-  bookInfo.forEach((book) => {
-    const card = document.createElement("div");
-    card.classList.add("bookCard");
-    card.id = book.cover;
-    const title = document.createElement("h4");
-    const linkDescription = document.createElement("a");
-    linkDescription.id = book.key;
-    linkDescription.textContent = book.title;
-    linkDescription.classList.add("linkDescription");
-    const author = document.createElement("p");
-    author.textContent = book.author;
-    title.appendChild(linkDescription);
-    card.appendChild(title);
-    card.appendChild(author);
-    results.append(card);
-  });
-}
+  else {
+    const results = document.getElementById("results");
+    results.innerHTML = "";
+    bookInfo.forEach((book) => {
+      const card = document.createElement("div");
+      card.classList.add("bookCard");
+      card.id = book.cover;
+      const title = document.createElement("h4");
+      const linkDescription = document.createElement("a");
+      linkDescription.id = book.key;
+      linkDescription.textContent = book.title;
+      linkDescription.classList.add("linkDescription");
+      const author = document.createElement("p");
+      author.textContent = book.author;
+      title.appendChild(linkDescription);
+      card.appendChild(title);
+      card.appendChild(author);
+      results.append(card);
+    });
+  }
 ```
 Nel processo di creazione delle anteprime dei libri, la book.key viene assegnata all’ID del titolo del libro, che è un link, e la chiave (book.cover) della copertina viene assegnata all’ID del <div> (card), che contiene tutte le informazioni del libro.
 
@@ -310,8 +310,9 @@ Nel file sono presenti due funzioni, vediamole:
 - **Recupero della descrizione del libro** La funzione inizia effettuando una chiamata GET all'API di Open Library per ottenere i dati del libro corrispondente a `id1` Estrae la descrizione del libro dai dati della risposta. Se la descrizione è un oggetto con una proprietà `value`, viene utilizzato il valore di `value`. Se la descrizione non è disponibile, viene impostato un messaggio predefinito "Non c'è una 'descrizione' per questo libro".
 ```javascript
   const response = await axios.get("https://openlibrary.org" + id1 + ".json");
-  let info = response.data;
+  const info = response.data;
   let description = _.get(info, "description");
+  // eslint-disable-next-line no-empty
   if (typeof description === "string") {
   } else if (
     typeof description === "object" &&
@@ -322,14 +323,14 @@ Nel file sono presenti due funzioni, vediamole:
   } else {
     description = "There is no 'description' for this book.";
   }
-  objInfo["description"] = description;
+  objInfo.description = description;
 ```
 
 **Recupero dell'immagine di copertina**  Cerca di ottenere l'immagine di copertina del libro. Prima tenta di ottenere l'edizione di copertina dai dati della risposta e, se disponibile, chiama la funzione `getCoverBook` per ottenere l'URL dell'immagine di copertina. Se l'edizione di copertina non è disponibile, prova un secondo metodo per ottenere l'URL dell'immagine di copertina utilizzando `id2`.
 Se non viene trovata alcuna immagine di copertina, seleziona casualmente un'immagine di copertina da un insieme predefinito di immagini. Infine, aggiunge l'oggetto `objInfo`, che contiene la descrizione e l'URL dell'immagine di copertina, all'array `arrayInfo` e restituisce `arrayInfo`.
 
 ```javascript
-let coverEdition = response.data.cover_edition;
+ const coverEdition = response.data.cover_edition;
   if (coverEdition) {
     coverBook = await getCoverBook(coverEdition.key);
   } else if (id2 !== "null") {
@@ -339,13 +340,13 @@ let coverEdition = response.data.cover_edition;
 
   // If no coverBook is found, use a random book cover image
   if (!coverBook) {
-    let images = [
+    const images = [
       "asset/img/cover1.jpg",
       "asset/img/cover2.jpg",
       "asset/img/cover3.jpg",
     ];
-    let randomIndex = Math.floor(Math.random() * images.length);
-    let randomImage = images[randomIndex];
+    const randomIndex = Math.floor(Math.random() * images.length);
+    const randomImage = images[randomIndex];
     coverBook = randomImage;
   }
   
@@ -355,6 +356,25 @@ let coverEdition = response.data.cover_edition;
   return arrayInfo;
 ```
 2. La funzione `getCoverBook` è una funzione asincrona che recupera l'URL dell'immagine di copertina di un libro da Open Library. Prende un parametro, `coverData`, che rappresenta l'identificatore univoco dell'edizione di copertina di un libro.
+```javascript
+async function getCoverBook(coverData) {
+  try {
+    const cover = await axios.get(
+      "https://openlibrary.org" + coverData + ".json",
+    );
+    const resultCover = cover.data;
+    const isbn =
+      _.get(resultCover, "isbn_13[0]") || _.get(resultCover, "isbn_10[0]");
+    if (!isbn) {
+      return null;
+    }
+    return `https://covers.openlibrary.org/b/isbn/${isbn}-M.jpg`;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+}
+```
 
 La funzione inizia effettuando una chiamata GET all'API di Open Library per ottenere i dati dell'edizione di copertina corrispondente a `coverData`.
 Estrae l'ISBN dai dati della risposta e costruisce l'URL dell'immagine di copertina.
